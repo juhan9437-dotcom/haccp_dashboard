@@ -1,4 +1,4 @@
-﻿import os, sys
+import os, sys
 # Ensure the repo root (parent of this file's directory) is on sys.path so that
 # `from haccp_dashboard.xxx import ...` works when running `python haccp_dashboard/app.py`
 _repo_root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
@@ -17,7 +17,7 @@ import dash_bootstrap_components as dbc
     Input("ai-chat-history", "data"),
 )
 def update_ai_chat(chat_history):
-    from lib.main_helpers import ai_chat_bubble
+    from haccp_dashboard.lib.main_helpers import ai_chat_bubble
     if not chat_history:
         return []
     return [ai_chat_bubble(msg.get("role", "user"), msg.get("text", "")) for msg in chat_history]
@@ -31,7 +31,7 @@ app = dash.Dash(
 )
 server = app.server
 
-from pages.main_helpers import (
+from haccp_dashboard.pages.main_helpers import (
     DEFAULT_AI_HISTORY,
     DEFAULT_PANEL_STATE,
     build_ai_assistant_sidebar,
@@ -47,7 +47,7 @@ from pages.main_helpers import (
 
 _ENABLE_EMBEDDED_BRIDGE = str(get_runtime_env_value("HACCP_ENABLE_EMBEDDED_BRIDGE", "0")).strip().lower() in {"1", "true", "yes", "on"}
 if _ENABLE_EMBEDDED_BRIDGE:
-    from api_routes import bp as external_api_bp  # noqa: E402
+    from haccp_dashboard.api_routes import bp as external_api_bp  # noqa: E402
 
     server.register_blueprint(external_api_bp)
 
