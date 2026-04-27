@@ -172,7 +172,6 @@ sidebar = html.Div(
         dbc.NavLink(
             "QC/QA 대시보드",
             href="/",
-            active="exact",
             className="sidebar-link",
         ),
         dbc.NavLink(
