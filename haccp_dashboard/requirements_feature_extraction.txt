@@ -1,0 +1,21 @@
+# Handcrafted feature extraction deps (optional)
+#
+# 목적: `feature_extraction.py --mode handcrafted`를 실행 가능하게 하는 환경 세팅.
+# - 대시보드( Dash + pandas==2.2.0 ) 환경과 같이 쓸 수 있도록 `numpy<2`와 호환되는 버전대로 고정합니다.
+# - CNN feature 추출(torch/torchvision)은 별도 requirements를 사용하세요:
+#   `haccp_dashboard/requirements_feature_extraction_cnn.txt`
+#
+# 설치(권장: Python 3.12 feature venv `C:\haccp_dashboard\.venv_feat312`):
+#   .\.venv_feat312\Scripts\pip install -r haccp_dashboard\requirements_feature_extraction.txt
+
+tqdm>=4.66.0
+
+# Keep the dashboard stack (pandas/tensorflow) compatible.
+numpy>=1.26.0,<2
+
+# OpenCV 최신 버전은 numpy>=2를 요구하는 경우가 있어, numpy<2 호환 버전으로 고정합니다.
+opencv-python==4.10.0.84
+
+# scikit-image도 numpy<2와 맞는 조합으로 고정합니다.
+scikit-image==0.22.0
+tifffile<2025

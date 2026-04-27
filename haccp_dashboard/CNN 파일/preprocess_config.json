@@ -1,0 +1,12 @@
+{
+  "input_size": 448,
+  "crop_size": 448,
+  "grayscale": true,
+  "normalize_mean": [
+    0.5
+  ],
+  "normalize_std": [
+    0.5
+  ],
+  "description": "CenterCrop(448) → Resize(448) → Grayscale → Normalize(0.5, 0.5)"
+}

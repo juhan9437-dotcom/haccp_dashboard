@@ -1,0 +1,8 @@
+{
+  "cnn_weight": 0.75,
+  "ml_weight": 0.25,
+  "description": "CNN 75% + ML(RF+ET) 25% — Val F1 기준 최적",
+  "val_f1": 0.8078,
+  "val_recall": 0.8078,
+  "val_pr_auc": 0.8975
+}

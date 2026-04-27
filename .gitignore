@@ -1,0 +1,67 @@
+# ===== Python =====
+.venv/
+.venv312/
+.venv_feat312/
+venv/
+env/
+**/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+build/
+dist/
+
+# ===== IDE / OS =====
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# ===== 환경 변수 / 시크릿 =====
+.env
+*.env
+!*.env.example
+
+# ===== 로컬 운영 DB =====
+*.sqlite3
+*.sqlite
+*.db
+
+# ===== 임시/스크래치 파일 =====
+_tmp_*.csv
+_tmp_*.html
+_tmp_*.py
+_diag.py
+_filelist.txt
+output.txt
+search_emojis.py
+*.log
+
+# ===== 대용량 샘플/학습 CSV =====
+haccp_dashboard/batch_150_*.csv
+haccp_dashboard/sample_inference_*.csv
+
+# ===== 백업 폴더 =====
+_backup_before_rollback_*/
+**/_backup_*/
+
+# ===== 대용량 학습 이미지 / 임시 폴더 =====
+haccp_dashboard/resize_640 x 360/
+rr/
+
+# ===== 모델 가중치 =====
+*.pt
+*.pth
+*.keras
+*.h5
+*.onnx
+*.tflite
+
+# CNN 학습 산출물
+haccp_dashboard/CNN 파일/*.csv
+haccp_dashboard/CNN 파일/*.png
+haccp_dashboard/CNN 파일/*.pkl
+
+# ===== 노트북 체크포인트 =====
+.ipynb_checkpoints/

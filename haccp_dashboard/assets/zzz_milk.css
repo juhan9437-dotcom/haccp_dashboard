@@ -1,0 +1,3285 @@
+/* ?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧??
+   HACCP ??쒕낫???듯빀 ?붿옄???쒖뒪??
+   "留ㅼ씪?좎뾽 ?먮굦??源⑤걮?섍퀬 ?좊ː媛??덈뒗 ?곗쑀怨듭젙 ??쒕낫??
+   
+   ?????뚯씪? style.css ?댄썑??濡쒕뱶?섏뼱 ?붿옄???좏겙???ъ젙?섑빀?덈떎.
+   ???덉씠?꾩썐 援ъ“쨌湲곕뒫 ?대옒?ㅻ뒗 嫄대뱶由ъ? ?딄퀬, ?됱긽쨌??댄룷쨌媛꾧꺽쨌
+     而댄룷?뚰듃 ?멸?留??듭씪?⑸땲??
+?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧??*/
+
+/* ??????????????????????????????????????????????????????????????
+   1. ?붿옄???좏겙 (CSS Custom Properties)
+?????????????????????????????????????????????????????????????? */
+:root {
+  /* ?됱긽 ??諛곌꼍 */
+  --ds-bg:            #f0f4f8;       /* ?섏씠吏 諛곌꼍: 洹뱀뿰??釉붾（洹몃젅??*/
+  --ds-surface:       #ffffff;       /* 移대뱶/?⑤꼸 諛곌꼍 */
+  --ds-surface-sub:   #f8fafc;       /* 遺移대뱶, ???ㅻ뜑 諛곌꼍 */
+
+  /* ?됱긽 ???뚮몢由?*/
+  --ds-border:        #dde3ec;       /* 湲곕낯 ?뚮몢由?*/
+  --ds-border-light:  #eef1f6;       /* ?고븳 ?뚮몢由?*/
+
+  /* ?됱긽 ???띿뒪??*/
+  --ds-text:          #0d1b2a;       /* 湲곕낯 ?띿뒪?? ???ㅼ씠鍮?*/
+  --ds-text-sub:      #4b5c6b;       /* 遺媛 ?띿뒪??*/
+  --ds-text-muted:    #8fa0b0;       /* ?щ????띿뒪??*/
+
+  /* ?됱긽 ??釉뚮옖???ъ씤??*/
+  --ds-brand:         #1565c0;       /* 硫붿씤 ?ъ씤?? 源⑤걮??釉붾（ */
+  --ds-brand-hover:   #1251a3;
+  --ds-brand-light:   #e3f0fb;       /* ?고븳 釉뚮옖??諛곌꼍 */
+
+  /* ?됱긽 ???곹깭 */
+  --ds-ok:            #15803d;       /* ?뺤긽: 洹몃┛ */
+  --ds-ok-bg:         #f0fdf4;
+  --ds-ok-border:     #bbf7d0;
+  --ds-warn:          #b45309;       /* 寃쎄퀬: ?곕쾭 */
+  --ds-warn-bg:       #fffbeb;
+  --ds-warn-border:   #fde68a;
+  --ds-danger:        #b91c1c;       /* ?꾪뿕: ?덈뱶 */
+  --ds-danger-bg:     #fff5f5;
+  --ds-danger-border: #fecaca;
+  --ds-idle:          #5a6472;       /* ?湲?鍮꾪솢??*/
+  --ds-idle-bg:       #f3f4f6;
+  --ds-idle-border:   #e5e7eb;
+
+  /* ??댄룷洹몃옒??*/
+  --ds-font:          'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+  --ds-size-xl:       22px;          /* ?섏씠吏 ??댄? */
+  --ds-size-lg:       17px;          /* ?뱀뀡 ??댄? */
+  --ds-size-md:       15px;          /* 移대뱶 ??댄? */
+  --ds-size-sm:       13px;          /* 蹂몃Ц */
+  --ds-size-xs:       12px;          /* 蹂댁“ ?띿뒪??*/
+  --ds-size-xxs:      11px;          /* 諛곗?, ?쇰꺼 */
+  --ds-size-kpi:      28px;          /* KPI ?レ옄 */
+  --ds-size-kpi-sm:   22px;          /* ?뚰삎 KPI ?レ옄 */
+
+  /* 媛꾧꺽 (8px 湲곕컲) */
+  --ds-page-p:        24px;          /* ?섏씠吏 ?⑤뵫 */
+  --ds-section-gap:   20px;          /* ?뱀뀡 媛?媛꾧꺽 */
+  --ds-card-gap:      16px;          /* 移대뱶 媛?媛꾧꺽 */
+  --ds-card-p:        20px 24px;     /* 移대뱶 ?대? ?⑤뵫 */
+  --ds-card-p-sm:     16px 20px;     /* ?뚰삎 移대뱶 ?⑤뵫 */
+  --ds-cell-p:        10px 12px;     /* ??? ?⑤뵫 */
+
+  /* 而댄룷?뚰듃 */
+  --ds-radius-card:   12px;          /* 移대뱶 radius */
+  --ds-radius-btn:    8px;           /* 踰꾪듉 radius */
+  --ds-radius-badge:  6px;           /* 諛곗? radius */
+  --ds-radius-input:  8px;           /* ?낅젰李?radius */
+  --ds-btn-h:         36px;          /* 踰꾪듉 ?믪씠 */
+  --ds-shadow:        0 1px 4px rgba(13,27,42,0.06), 0 4px 14px rgba(13,27,42,0.05);
+  --ds-shadow-md:     0 2px 8px rgba(13,27,42,0.08), 0 8px 24px rgba(13,27,42,0.06);
+
+  /* 湲곗〈 蹂???ъ젙??*/
+  --card-radius:      var(--ds-radius-card);
+  --section-gap:      var(--ds-section-gap);
+  --content-padding:  var(--ds-page-p);
+}
+
+/* ??????????????????????????????????????????????????????????????
+   2. ?꾩껜 湲곕컲
+?????????????????????????????????????????????????????????????? */
+body {
+  background: var(--ds-bg);
+  color: var(--ds-text);
+  font-family: var(--ds-font);
+  font-size: var(--ds-size-sm);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ??????????????????????????????????????????????????????????????
+   3. ?ъ씠?쒕컮 (?ㅽ겕 ?ㅼ씠鍮?
+?????????????????????????????????????????????????????????????? */
+.sidebar {
+  background: #1F2937 !important;
+  border-right: none !important;
+  box-shadow: 2px 0 12px rgba(0,0,0,0.22);
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+/* 釉뚮옖???곸뿭 */
+.sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 24px 16px 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  margin-bottom: 6px;
+  flex-shrink: 0;
+}
+.sidebar-brand-name {
+  font-size: 18px;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.3;
+  letter-spacing: -0.2px;
+}
+.sidebar-brand-sub {
+  font-size: 13px;
+  color: #AAB8CF;
+  font-weight: 400;
+  margin-top: 3px;
+}
+
+/* ?뱀뀡 ?덉씠釉?*/
+.sidebar-section-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #8FA1BF;
+  padding: 16px 16px 12px;
+}
+
+/* 硫붾돱 留곹겕 */
+.sidebar-title {
+  display: none;
+}
+.sidebar hr {
+  border-top: 1px solid rgba(255,255,255,0.09);
+  margin: 8px 12px;
+}
+.sidebar-link {
+  font-size: 14px;
+  font-weight: 500;
+  color: #F1F5F9 !important;
+  height: 48px;
+  padding: 0 14px;
+  border-radius: 12px;
+  border: none;
+  margin: 2px 10px;
+  transition: background 0.15s, color 0.15s;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none !important;
+}
+.sidebar-link:hover {
+  background: rgba(255,255,255,0.09) !important;
+  color: #ffffff !important;
+}
+.sidebar-link.active,
+.sidebar-link[aria-current="page"] {
+  background: rgba(255,255,255,0.08) !important;
+  color: #ffffff !important;
+  font-weight: 600;
+}
+.sidebar-menu-icon {
+  font-size: 16px;
+  width: 22px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+/* 踰꾩쟾 ?띿뒪??*/
+.sidebar-version {
+  font-size: 11px;
+  color: rgba(255,255,255,0.22);
+  padding: 14px 16px;
+  margin-top: auto;
+  border-top: 1px solid rgba(255,255,255,0.07);
+  flex-shrink: 0;
+}
+
+/* ??????????????????????????????????????????????????????????????
+   4. 而⑦뀗痢??곸뿭
+?????????????????????????????????????????????????????????????? */
+.content {
+  background: var(--ds-bg);
+  padding: var(--ds-page-p);
+}
+
+/* ??????????????????????????????????????????????????????????????
+   5. ?섏씠吏 / ?뱀뀡 ?쒕ぉ
+?????????????????????????????????????????????????????????????? */
+.section-title {
+  font-size: var(--ds-size-lg);
+  font-weight: 700;
+  color: var(--ds-text);
+  margin-bottom: 14px;
+  line-height: 1.3;
+  letter-spacing: -0.2px;
+}
+
+.section-title.page {
+  font-size: var(--ds-size-xl);
+  font-weight: 800;
+  margin-bottom: 6px;
+  letter-spacing: -0.4px;
+}
+
+h2.section-title,
+.screen-zone > h2,
+.screen-zone .section-title {
+  font-size: var(--ds-size-xl);
+  font-weight: 800;
+  color: var(--ds-text);
+  margin-bottom: 6px;
+}
+
+/* 移대뱶 ?대? h2 */
+.chart-box h2,
+.chart-box h3 {
+  font-size: var(--ds-size-md);
+  font-weight: 700;
+  color: var(--ds-text);
+  margin-bottom: 14px;
+  line-height: 1.3;
+}
+
+/* ??????????????????????????????????????????????????????????????
+   6. 移대뱶 (怨듯넻)
+?????????????????????????????????????????????????????????????? */
+.kpi-card,
+.chart-box,
+.mini-card,
+.ls-card,
+.process-status-card,
+.smart-panel,
+.process-strip-card,
+.pcard-metric,
+.compact-kpi-card,
+.ccp-card,
+.defect-rate-card,
+.line-action-card,
+.factory-batch-node,
+.factory-three-card,
+.factory-route-card,
+.inspection-upload-card,
+.inspection-ai-report-card,
+.alarm-detail-panel,
+.alarm-status-panel,
+.heating-stage-summary-card {
+  border-radius: var(--ds-radius-card) !important;
+  box-shadow: var(--ds-shadow) !important;
+  border: 1px solid var(--ds-border) !important;
+  background: var(--ds-surface) !important;
+}
+
+/* 移대뱶 hover: 議곗슜??lift ?④낵 */
+.chart-box:hover,
+.kpi-card:hover {
+  transform: none !important;
+  box-shadow: var(--ds-shadow-md) !important;
+}
+
+/* ??????????????????????????????????????????????????????????????
+   7. KPI 移대뱶 (.kpi-card / .compact-kpi-card)
+?????????????????????????????????????????????????????????????? */
+.kpi-card {
+  padding: 20px 22px !important;
+  min-height: 0 !important;
+  gap: 10px !important;
+}
+
+.kpi-label {
+  font-size: var(--ds-size-xs) !important;
+  font-weight: 600 !important;
+  color: var(--ds-text-sub) !important;
+  line-height: 1.4 !important;
+}
+
+.kpi-value {
+  font-size: var(--ds-size-kpi) !important;
+  font-weight: 800 !important;
+  color: var(--ds-text) !important;
+  line-height: 1.1 !important;
+  letter-spacing: -0.04em !important;
+}
+
+.kpi-description {
+  font-size: var(--ds-size-xxs) !important;
+  font-weight: 500 !important;
+  color: var(--ds-text-muted) !important;
+  line-height: 1.5 !important;
+}
+
+.kpi-icon {
+  width: 36px !important;
+  height: 36px !important;
+  border-radius: 8px !important;
+  background: var(--ds-surface-sub) !important;
+  border: 1px solid var(--ds-border-light) !important;
+}
+
+/* compact KPI (heating / final / alarm pages) */
+.compact-kpi-card {
+  padding: 16px 18px !important;
+}
+
+.compact-kpi-card::before {
+  content: none !important;
+}
+
+.compact-kpi-card:hover {
+  transform: none !important;
+  box-shadow: var(--ds-shadow-md) !important;
+}
+
+/* ??????????????????????????????????????????????????????????????
+   8. 諛곗? / ?곹깭 ?쒖떆
+?????????????????????????????????????????????????????????????? */
+
+/* .ls-badge ?듭씪 */
+.ls-badge {
+  font-size: var(--ds-size-xxs) !important;
+  font-weight: 700 !important;
+  padding: 4px 10px !important;
+  border-radius: var(--ds-radius-badge) !important;
+}
+
+.ls-badge.normal {
+  color: var(--ds-ok) !important;
+  background: var(--ds-ok-bg) !important;
+  border-color: var(--ds-ok-border) !important;
+}
+.ls-badge.warning {
+  color: var(--ds-warn) !important;
+  background: var(--ds-warn-bg) !important;
+  border-color: var(--ds-warn-border) !important;
+}
+.ls-badge.danger {
+  color: var(--ds-danger) !important;
+  background: var(--ds-danger-bg) !important;
+  border-color: var(--ds-danger-border) !important;
+}
+
+/* inspection prediction badge */
+.inspection-prediction-badge {
+  font-size: var(--ds-size-xxs) !important;
+  font-weight: 700 !important;
+  padding: 4px 10px !important;
+  border-radius: var(--ds-radius-badge) !important;
+  min-height: 24px !important;
+}
+
+/* line-action badge */
+.line-action-badge {
+  font-size: var(--ds-size-xxs) !important;
+  font-weight: 700 !important;
+}
+
+/* factory status badge/chip */
+.factory-batch-status,
+.factory-line-status-chip,
+.factory-batch-line-chip,
+.factory-line-status-badge {
+  font-size: var(--ds-size-xxs) !important;
+  font-weight: 700 !important;
+  border-radius: var(--ds-radius-badge) !important;
+}
+
+/* ??????????????????????????????????????????????????????????????
+   9. ??(tables)
+?????????????????????????????????????????????????????????????? */
+.summary-table th,
+table th {
+  font-size: var(--ds-size-xs) !important;
+  font-weight: 700 !important;
+  color: var(--ds-text-sub) !important;
+  background: var(--ds-surface-sub) !important;
+  padding: var(--ds-cell-p) !important;
+  border-bottom: 1px solid var(--ds-border) !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+}
+
+.summary-table td,
+table td {
+  font-size: var(--ds-size-xs) !important;
+  color: var(--ds-text) !important;
+  padding: var(--ds-cell-p) !important;
+  border-bottom: 1px solid var(--ds-border-light) !important;
+  vertical-align: middle !important;
+}
+
+.summary-table tbody tr:hover,
+table tbody tr:hover {
+  background: var(--ds-brand-light) !important;
+}
+
+/* compact-scroll table */
+.compact-scroll table th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+/* ??????????????????????????????????????????????????????????????
+   10. 踰꾪듉 (怨듯넻)
+?????????????????????????????????????????????????????????????? */
+
+/* ?곷떒 ?ㅻ뜑 ?≪뀡 踰꾪듉: ?뚮엺/硫붿떆吏/AI/蹂닿퀬??*/
+#alarm-btn, #dm-btn, #ai-btn, #report-btn, #collapse-ai-btn {
+  height: var(--ds-btn-h) !important;
+  min-height: var(--ds-btn-h) !important;
+  border-radius: var(--ds-radius-btn) !important;
+  font-size: var(--ds-size-xs) !important;
+  font-weight: 600 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  padding: 0 14px !important;
+  border: 1px solid var(--ds-border) !important;
+  background: var(--ds-surface) !important;
+  color: var(--ds-text-sub) !important;
+  cursor: pointer !important;
+  transition: background 0.15s, color 0.15s, border-color 0.15s, box-shadow 0.15s !important;
+}
+
+#alarm-btn:hover, #dm-btn:hover, #ai-btn:hover,
+#report-btn:hover, #collapse-ai-btn:hover {
+  background: var(--ds-brand-light) !important;
+  color: var(--ds-brand) !important;
+  border-color: #a8c8ef !important;
+  transform: none !important;
+  box-shadow: 0 2px 8px rgba(21,101,192,0.10) !important;
+}
+
+/* .pcard-btn */
+.pcard-btn {
+  height: var(--ds-btn-h) !important;
+  border-radius: var(--ds-radius-btn) !important;
+  font-size: var(--ds-size-xs) !important;
+  font-weight: 600 !important;
+  border: 1px solid var(--ds-border) !important;
+  background: var(--ds-surface-sub) !important;
+  color: var(--ds-text-sub) !important;
+  cursor: pointer !important;
+}
+
+.pcard-btn:hover {
+  background: var(--ds-brand-light) !important;
+  color: var(--ds-brand) !important;
+}
+
+/* .action-btn */
+.action-btn {
+  height: var(--ds-btn-h) !important;
+  border-radius: var(--ds-radius-btn) !important;
+  font-size: var(--ds-size-xs) !important;
+  font-weight: 600 !important;
+  border: 1px solid var(--ds-border) !important;
+  background: var(--ds-surface) !important;
+  color: var(--ds-brand) !important;
+}
+
+/* factory route 踰꾪듉 */
+.factory-route-button {
+  border-radius: var(--ds-radius-btn) !important;
+  font-size: var(--ds-size-xs) !important;
+  font-weight: 700 !important;
+  min-height: var(--ds-btn-h) !important;
+}
+
+.factory-route-button.primary {
+  background: var(--ds-brand) !important;
+  color: #fff !important;
+}
+
+.factory-route-button.secondary {
+  background: var(--ds-surface-sub) !important;
+  color: var(--ds-brand) !important;
+  border: 1px solid var(--ds-border) !important;
+}
+
+/* 異붾줎 ?ㅽ뻾 踰꾪듉 */
+.inspection-run-button {
+  height: var(--ds-btn-h) !important;
+  border-radius: var(--ds-radius-btn) !important;
+  font-size: var(--ds-size-xs) !important;
+  font-weight: 700 !important;
+  background: var(--ds-brand) !important;
+  color: #fff !important;
+  border: none !important;
+}
+
+.inspection-run-button:not(:disabled):hover {
+  background: var(--ds-brand-hover) !important;
+}
+
+/* 諛곗튂 遺꾩꽍蹂닿린 踰꾪듉 */
+[id*="heating-batch-btn"] {
+  border-radius: var(--ds-radius-btn) !important;
+  font-size: var(--ds-size-xxs) !important;
+  font-weight: 600 !important;
+  height: 28px !important;
+}
+
+/* quick-btn */
+.quick-btn {
+  border-radius: var(--ds-radius-btn) !important;
+  font-size: var(--ds-size-xs) !important;
+  border: 1px solid var(--ds-border) !important;
+  background: var(--ds-surface-sub) !important;
+  color: var(--ds-text) !important;
+  min-height: var(--ds-btn-h) !important;
+}
+
+.quick-btn:hover {
+  background: var(--ds-brand-light) !important;
+  border-color: #a8c8ef !important;
+  color: var(--ds-brand) !important;
+  box-shadow: none !important;
+}
+
+/* ??????????????????????????????????????????????????????????????
+   11. ?낅젰李?/ ?쒕∼?ㅼ슫
+?????????????????????????????????????????????????????????????? */
+.Select-control {
+  height: var(--ds-btn-h) !important;
+  border-radius: var(--ds-radius-input) !important;
+  border: 1px solid var(--ds-border) !important;
+  background: var(--ds-surface) !important;
+  box-shadow: none !important;
+}
+
+.Select-placeholder, .Select-value-label {
+  font-size: var(--ds-size-xs) !important;
+  font-weight: 600 !important;
+  color: var(--ds-text-sub) !important;
+  line-height: calc(var(--ds-btn-h) - 2px) !important;
+}
+
+.Select-menu-outer {
+  border: 1px solid var(--ds-border) !important;
+  border-radius: var(--ds-radius-input) !important;
+  box-shadow: var(--ds-shadow-md) !important;
+}
+
+.Select-option {
+  font-size: var(--ds-size-xs) !important;
+  color: var(--ds-text) !important;
+}
+
+.Select-option.is-focused {
+  background: var(--ds-brand-light) !important;
+  color: var(--ds-brand) !important;
+}
+
+/* ??????????????????????????????????????????????????????????????
+   12. ?곹깭 移대뱶 諛??좏샇??蹂대뱶 (硫붿씤 CCP ?곹깭 蹂대뱶)
+?????????????????????????????????????????????????????????????? */
+.ccp-card {
+  padding: var(--ds-card-p-sm) !important;
+}
+
+.ccp-header-title {
+  font-size: var(--ds-size-md) !important;
+  font-weight: 700 !important;
+  color: var(--ds-text) !important;
+}
+
+.ccp-header-badge {
+  font-size: var(--ds-size-xxs) !important;
+  font-weight: 700 !important;
+  border-radius: var(--ds-radius-badge) !important;
+}
+
+.ccp-state-title {
+  font-size: var(--ds-size-md) !important;
+  font-weight: 700 !important;
+}
+
+.ccp-state-sub {
+  font-size: var(--ds-size-xs) !important;
+  font-weight: 500 !important;
+  color: var(--ds-text-sub) !important;
+}
+
+.ccp-state-card {
+  border-radius: var(--ds-radius-btn) !important;
+  border: 1px solid var(--ds-border) !important;
+  background: var(--ds-surface-sub) !important;
+}
+
+.ccp-state-card--critical {
+  border-color: var(--ds-danger-border) !important;
+  background: var(--ds-danger-bg) !important;
+}
+
+.ccp-state-card--warning {
+  border-color: var(--ds-warn-border) !important;
+  background: var(--ds-warn-bg) !important;
+}
+
+.ccp-state-card--normal {
+  border-color: var(--ds-ok-border) !important;
+  background: var(--ds-ok-bg) !important;
+}
+
+/* ??????????????????????????????????????????????????????????????
+   13. ?쇱씤 ?≪뀡 移대뱶 ?됱긽 ?뺣퉬
+?????????????????????????????????????????????????????????????? */
+.line-action-card {
+  border-radius: var(--ds-radius-card) !important;
+  overflow: hidden !important;
+}
+
+/* ?꾪뿕 */
+.line-action-card--critical .line-action-topbar {
+  background: linear-gradient(90deg, #b91c1c, #991b1b) !important;
+}
+.line-action-card--critical .line-action-body {
+  background: var(--ds-danger-bg) !important;
+}
+.line-action-card--critical .line-action-footer {
+  background: #fff5f5 !important;
+  color: var(--ds-danger) !important;
+}
+.line-action-card--critical .line-action-row-value--big,
+.line-action-card--critical .line-action-row-value--strong {
+  color: var(--ds-danger) !important;
+}
+
+/* 寃쎄퀬 */
+.line-action-card--warning .line-action-topbar {
+  background: linear-gradient(90deg, #b45309, #92400e) !important;
+}
+.line-action-card--warning .line-action-body {
+  background: var(--ds-warn-bg) !important;
+}
+.line-action-card--warning .line-action-footer {
+  background: #fffbeb !important;
+  color: var(--ds-warn) !important;
+}
+.line-action-card--warning .line-action-row-value--big,
+.line-action-card--warning .line-action-row-value--strong {
+  color: var(--ds-warn) !important;
+}
+
+/* ?뺤긽 */
+.line-action-card--normal .line-action-topbar {
+  background: linear-gradient(90deg, #15803d, #166534) !important;
+}
+.line-action-card--normal .line-action-body {
+  background: var(--ds-ok-bg) !important;
+}
+.line-action-card--normal .line-action-footer {
+  background: #f0fdf4 !important;
+  color: var(--ds-ok) !important;
+}
+.line-action-card--normal .line-action-row-value--big,
+.line-action-card--normal .line-action-row-value--strong {
+  color: var(--ds-ok) !important;
+}
+
+/* ??댄룷 ?듭씪 */
+.line-action-title {
+  font-size: var(--ds-size-md) !important;
+  font-weight: 800 !important;
+}
+
+.line-action-row-label {
+  font-size: var(--ds-size-xs) !important;
+  font-weight: 600 !important;
+  color: var(--ds-text-sub) !important;
+}
+
+.line-action-row-value {
+  font-size: var(--ds-size-xs) !important;
+  font-weight: 700 !important;
+  color: var(--ds-text) !important;
+}
+
+.line-action-section-title {
+  font-size: var(--ds-size-lg) !important;
+  font-weight: 800 !important;
+  color: var(--ds-text) !important;
+}
+
+.line-action-section-subtitle {
+  font-size: var(--ds-size-xs) !important;
+  color: var(--ds-text-muted) !important;
+}
+
+/* ??????????????????????????????????????????????????????????????
+   14. Smart Factory / 硫붿씤 ??쒕낫???⑤꼸
+?????????????????????????????????????????????????????????????? */
+.smart-panel {
+  padding: 20px 22px !important;
+}
+
+.smart-panel-title {
+  font-size: var(--ds-size-lg) !important;
+  font-weight: 800 !important;
+  color: var(--ds-text) !important;
+  letter-spacing: -0.2px !important;
+}
+
+.factory-decision-hero {
+  border-radius: var(--ds-radius-card) !important;
+  border: 1px solid var(--ds-border) !important;
+  background: var(--ds-brand-light) !important;
+}
+
+.factory-decision-eyebrow {
+  font-size: var(--ds-size-xxs) !important;
+  color: var(--ds-brand) !important;
+  font-weight: 700 !important;
+}
+
+.factory-decision-title {
+  font-size: var(--ds-size-lg) !important;
+  font-weight: 800 !important;
+  color: var(--ds-text) !important;
+}
+
+.factory-decision-copy {
+  font-size: var(--ds-size-xs) !important;
+  color: var(--ds-text-sub) !important;
+  line-height: 1.65 !important;
+}
+
+.factory-line-status-card {
+  border-radius: var(--ds-radius-card) !important;
+  border: 1px solid var(--ds-border) !important;
+  background: var(--ds-surface) !important;
+}
+
+.factory-line-status-card.stable { background: var(--ds-ok-bg) !important; border-color: var(--ds-ok-border) !important; }
+.factory-line-status-card.warning { background: var(--ds-warn-bg) !important; border-color: var(--ds-warn-border) !important; }
+.factory-line-status-card.critical { background: var(--ds-danger-bg) !important; border-color: var(--ds-danger-border) !important; }
+
+.factory-line-status-title {
+  font-size: var(--ds-size-md) !important;
+  font-weight: 800 !important;
+  color: var(--ds-text) !important;
+}
+
+.factory-batch-node {
+  border-radius: var(--ds-radius-card) !important;
+  box-shadow: var(--ds-shadow) !important;
+}
+
+.factory-batch-node.stable { background: var(--ds-ok-bg) !important; }
+.factory-batch-node.warning { background: var(--ds-warn-bg) !important; }
+.factory-batch-node.critical { background: var(--ds-danger-bg) !important; }
+
+.factory-batch-title {
+  font-size: var(--ds-size-md) !important;
+  font-weight: 800 !important;
+  color: var(--ds-text) !important;
+}
+
+.factory-batch-meta {
+  font-size: var(--ds-size-xs) !important;
+  color: var(--ds-text-sub) !important;
+}
+
+.factory-stage-circle {
+  border-radius: 50% !important;
+  box-shadow: none !important;
+}
+
+.factory-stage-circle.is-complete {
+  background: var(--ds-ok) !important;
+  border-color: var(--ds-ok) !important;
+}
+
+.factory-stage-circle.is-active {
+  background: var(--ds-warn) !important;
+  border-color: var(--ds-warn-border) !important;
+  box-shadow: 0 0 0 4px rgba(180,83,9,0.12) !important;
+}
+
+.factory-mini-section {
+  border-radius: var(--ds-radius-btn) !important;
+  background: var(--ds-surface-sub) !important;
+  border: 1px solid var(--ds-border-light) !important;
+}
+
+.factory-data-chip {
+  border-radius: var(--ds-radius-badge) !important;
+  font-size: var(--ds-size-xxs) !important;
+  font-weight: 700 !important;
+}
+
+/* ??????????????????????????????????????????????????????????????
+   15. ?꾨줈?몄뒪 ?쇱씤 移대뱶 (.ls-card, .process-status-card)
+?????????????????????????????????????????????????????????????? */
+.process-status-card {
+  padding: 18px 20px !important;
+}
+
+.process-status-card.heating {
+  background: #fffaf9 !important;
+  border-color: var(--ds-danger-border) !important;
+}
+
+.process-status-card.final {
+  background: #f8fbff !important;
+  border-color: #bfdbfe !important;
+}
+
+.pcard-title {
+  font-size: var(--ds-size-md) !important;
+  font-weight: 700 !important;
+  color: var(--ds-text) !important;
+}
+
+.pcard-sub {
+  font-size: var(--ds-size-xxs) !important;
+  color: var(--ds-text-muted) !important;
+}
+
+.pcard-k {
+  font-size: var(--ds-size-xxs) !important;
+  color: var(--ds-text-muted) !important;
+  font-weight: 600 !important;
+}
+
+.pcard-v {
+  font-size: var(--ds-size-kpi-sm) !important;
+  font-weight: 800 !important;
+  color: var(--ds-text) !important;
+  letter-spacing: -0.04em !important;
+  margin-top: 8px !important;
+}
+
+.pcard-hint {
+  font-size: var(--ds-size-xxs) !important;
+  color: var(--ds-text-muted) !important;
+  margin-top: 4px !important;
+}
+
+.pcard-metric {
+  border-radius: 8px !important;
+  background: var(--ds-surface-sub) !important;
+  border: 1px solid var(--ds-border-light) !important;
+  padding: 12px !important;
+}
+
+/* mini-card */
+.mini-card-title {
+  font-size: var(--ds-size-md) !important;
+  font-weight: 700 !important;
+  color: var(--ds-text) !important;
+}
+
+/* action-row */
+.action-title {
+  font-size: var(--ds-size-xs) !important;
+  font-weight: 700 !important;
+  color: var(--ds-text) !important;
+}
+
+.action-detail {
+  font-size: var(--ds-size-xxs) !important;
+  color: var(--ds-text-muted) !important;
+}
+
+.action-rank {
+  border-radius: 6px !important;
+  background: var(--ds-surface-sub) !important;
+  font-size: var(--ds-size-xxs) !important;
+  color: var(--ds-text-sub) !important;
+}
+
+/* ??????????????????????????????????????????????????????????????
+   16. ?꾨줈?몄뒪 ?뚮줈??(怨듭젙 ?먮쫫??
+?????????????????????????????????????????????????????????????? */
+.pf-label {
+  font-size: var(--ds-size-xxs) !important;
+  font-weight: 700 !important;
+  color: var(--ds-text) !important;
+}
+
+.pf-arrow {
+  color: var(--ds-text-muted) !important;
+}
+
+/* 吏꾪뻾 留됰? */
+.pstrip-bar > div {
+  background: var(--ds-brand) !important;
+}
+
+.pstrip-k {
+  font-size: var(--ds-size-xxs) !important;
+  color: var(--ds-text-muted) !important;
+  font-weight: 600 !important;
+}
+
+.pstrip-v {
+  font-size: var(--ds-size-sm) !important;
+  font-weight: 700 !important;
+  color: var(--ds-text) !important;
+}
+
+/* pipeline ?④퀎 */
+.ls-plabel {
+  font-size: var(--ds-size-xxs) !important;
+  color: var(--ds-text-muted) !important;
+  font-weight: 600 !important;
+}
+
+.ls-pnode.is-active .ls-plabel {
+  color: var(--ds-text) !important;
+  font-weight: 800 !important;
+}
+
+.ls-pnode.is-done .ls-pdot-inner {
+  background: var(--ds-ok) !important;
+  border-color: var(--ds-ok) !important;
+}
+
+.ls-pnode.is-active.tone-normal .ls-pdot-inner {
+  background: var(--ds-ok) !important;
+  box-shadow: 0 0 0 4px rgba(21,128,61,0.14) !important;
+}
+
+.ls-pnode.is-active.tone-warning .ls-pdot-inner {
+  background: var(--ds-warn) !important;
+  box-shadow: 0 0 0 4px rgba(180,83,9,0.14) !important;
+}
+
+.ls-pnode.is-active.tone-danger .ls-pdot-inner {
+  background: var(--ds-danger) !important;
+  box-shadow: 0 0 0 4px rgba(185,28,28,0.14) !important;
+}
+
+.ls-pline-fg {
+  background: var(--ds-ok) !important;
+}
+
+.ls-pipe.tone-warning .ls-pline-fg {
+  background: var(--ds-warn) !important;
+}
+
+.ls-pipe.tone-danger .ls-pline-fg {
+  background: var(--ds-danger) !important;
+}
+
+/* ??????????????????????????????????????????????????????????????
+   17. ?쇱씤 ?붿빟 移대뱶 (.ls-card)
+?????????????????????????????????????????????????????????????? */
+.ls-card {
+  padding: 16px 18px !important;
+}
+
+.ls-line-title {
+  font-size: var(--ds-size-md) !important;
+  font-weight: 800 !important;
+  color: var(--ds-text) !important;
+}
+
+.ls-batch {
+  font-size: var(--ds-size-xxs) !important;
+  color: var(--ds-text-muted) !important;
+}
+
+.ls-m-title {
+  font-size: var(--ds-size-xxs) !important;
+  font-weight: 700 !important;
+  color: var(--ds-text-muted) !important;
+}
+
+.ls-m-title.heating { color: var(--ds-danger) !important; }
+.ls-m-title.final   { color: var(--ds-brand) !important; }
+
+.ls-v {
+  font-size: var(--ds-size-xs) !important;
+  font-weight: 700 !important;
+  color: var(--ds-text) !important;
+}
+
+.ls-k {
+  font-size: var(--ds-size-xxs) !important;
+  color: var(--ds-text-muted) !important;
+}
+
+/* ??????????????????????????????????????????????????????????????
+   18. 媛?댁궡洹?遺꾩꽍 ?⑤꼸
+?????????????????????????????????????????????????????????????? */
+.heating-stage-summary-card {
+  padding: 12px 14px !important;
+  border-radius: var(--ds-radius-btn) !important;
+}
+
+.heating-stage-summary-title {
+  font-size: var(--ds-size-xxs) !important;
+  font-weight: 700 !important;
+  color: var(--ds-text-sub) !important;
+}
+
+.heating-stage-summary-value {
+  font-size: var(--ds-size-xs) !important;
+  font-weight: 800 !important;
+  color: var(--ds-text) !important;
+  margin-top: 2px !important;
+}
+
+.heating-stage-guidance {
+  border-radius: var(--ds-radius-btn) !important;
+  border: 1px solid var(--ds-border) !important;
+  background: var(--ds-brand-light) !important;
+  font-size: var(--ds-size-xs) !important;
+  color: var(--ds-text-sub) !important;
+}
+
+/* ??????????????????????????????????????????????????????????????
+   19. 理쒖쥌?쒗뭹寃???⑤꼸
+?????????????????????????????????????????????????????????????? */
+.inspection-panel-title {
+  font-size: var(--ds-size-md) !important;
+  font-weight: 700 !important;
+  color: var(--ds-text) !important;
+}
+
+.inspection-panel-subtitle,
+.inspection-result-copy,
+.inspection-upload-drop-copy {
+  font-size: var(--ds-size-xs) !important;
+  color: var(--ds-text-muted) !important;
+  line-height: 1.6 !important;
+}
+
+.inspection-upload-stat-label,
+.inspection-result-metric-label,
+.inspection-mini-label {
+  font-size: var(--ds-size-xxs) !important;
+  font-weight: 700 !important;
+  color: var(--ds-text-sub) !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+}
+
+.inspection-upload-stat-value,
+.inspection-result-metric-value {
+  font-size: var(--ds-size-kpi-sm) !important;
+  font-weight: 800 !important;
+  color: var(--ds-text) !important;
+  margin-top: 4px !important;
+}
+
+.inspection-upload-stat-caption,
+.inspection-result-metric-caption {
+  font-size: var(--ds-size-xxs) !important;
+  color: var(--ds-text-muted) !important;
+}
+
+.inspection-upload-card {
+  background: var(--ds-surface) !important;
+  border: 1px solid var(--ds-border) !important;
+  border-radius: var(--ds-radius-card) !important;
+  padding: 16px !important;
+}
+
+.inspection-ai-report-card {
+  border-radius: var(--ds-radius-card) !important;
+  border: 1px solid var(--ds-border) !important;
+  padding: 14px 16px !important;
+}
+
+.inspection-upload-dropzone {
+  border: 1.5px dashed #93c5fd !important;
+  border-radius: var(--ds-radius-btn) !important;
+  background: var(--ds-brand-light) !important;
+}
+
+.inspection-sampling-note {
+  border-radius: var(--ds-radius-btn) !important;
+  border: 1px solid var(--ds-border) !important;
+  background: var(--ds-surface-sub) !important;
+  font-size: var(--ds-size-xs) !important;
+  color: var(--ds-text-sub) !important;
+}
+
+/* ??????????????????????????????????????????????????????????????
+   20. ?뚮엺?대젰 ?⑤꼸
+?????????????????????????????????????????????????????????????? */
+.alarm-detail-panel {
+  background: var(--ds-surface-sub) !important;
+  border: 1px solid var(--ds-border) !important;
+  border-radius: var(--ds-radius-card) !important;
+}
+
+.alarm-status-panel {
+  background: var(--ds-surface) !important;
+  border: 1px solid var(--ds-border) !important;
+  border-radius: var(--ds-radius-card) !important;
+}
+
+.alarm-history-tab {
+  font-size: var(--ds-size-xs) !important;
+  font-weight: 700 !important;
+  color: var(--ds-text-sub) !important;
+}
+
+.alarm-history-tab--selected {
+  color: var(--ds-brand) !important;
+  border-bottom-color: var(--ds-brand) !important;
+}
+
+/* ??????????????????????????????????????????????????????????????
+   21. 蹂닿퀬??紐⑤떖
+?????????????????????????????????????????????????????????????? */
+#report-panel {
+  border-radius: 14px !important;
+  box-shadow: 0 8px 32px rgba(13,27,42,0.18) !important;
+}
+
+#report-close-btn {
+  border-radius: var(--ds-radius-btn) !important;
+  border: 1px solid var(--ds-border) !important;
+  background: var(--ds-surface-sub) !important;
+}
+
+#report-close-btn:hover {
+  background: var(--ds-brand-light) !important;
+  color: var(--ds-brand) !important;
+  box-shadow: none !important;
+}
+
+/* ??????????????????????????????????????????????????????????????
+   22. compact-scroll (?ㅽ겕濡??뚯씠釉?而⑦뀒?대꼫)
+?????????????????????????????????????????????????????????????? */
+.compact-scroll::-webkit-scrollbar { width: 4px; height: 4px; }
+.compact-scroll::-webkit-scrollbar-track { background: var(--ds-border-light); border-radius: 4px; }
+.compact-scroll::-webkit-scrollbar-thumb { background: var(--ds-border); border-radius: 4px; }
+
+/* ??????????????????????????????????????????????????????????????
+   23. 諛곗튂 ?곹깭 ?뱀뀡 (??- 媛덉깋 ?뚮쭏 ???붿씠??釉붾（濡??뺣퉬)
+?????????????????????????????????????????????????????????????? */
+.batch-status-section {
+  background: var(--ds-surface) !important;
+  border: 1px solid var(--ds-border) !important;
+  border-radius: var(--ds-radius-card) !important;
+  box-shadow: var(--ds-shadow) !important;
+  padding: 20px 22px !important;
+}
+
+.batch-status-card-new {
+  background: var(--ds-surface-sub) !important;
+  border: 1px solid var(--ds-border) !important;
+  border-radius: var(--ds-radius-card) !important;
+  box-shadow: none !important;
+}
+
+.batch-name {
+  font-size: var(--ds-size-md) !important;
+  font-weight: 800 !important;
+  color: var(--ds-text) !important;
+}
+
+.line-chip {
+  background: var(--ds-brand-light) !important;
+  color: var(--ds-brand) !important;
+  font-size: var(--ds-size-xxs) !important;
+  font-weight: 700 !important;
+  border-radius: var(--ds-radius-badge) !important;
+  padding: 4px 10px !important;
+}
+
+.meta-pill {
+  background: var(--ds-surface) !important;
+  border: 1px solid var(--ds-border) !important;
+  color: var(--ds-text-sub) !important;
+  font-size: var(--ds-size-xxs) !important;
+  border-radius: var(--ds-radius-badge) !important;
+}
+
+.pipeline-circle.completed { background: var(--ds-ok) !important; }
+.pipeline-circle.active    { background: var(--ds-warn) !important; box-shadow: 0 0 0 4px rgba(180,83,9,0.12) !important; }
+.pipeline-circle.pending   { background: var(--ds-idle-bg) !important; border-color: var(--ds-border) !important; }
+
+.status-box {
+  background: var(--ds-surface) !important;
+  border: 1px solid var(--ds-border) !important;
+  border-radius: var(--ds-radius-btn) !important;
+}
+
+.status-text {
+  font-size: var(--ds-size-xxs) !important;
+  color: var(--ds-text-sub) !important;
+}
+
+.bottom-metric {
+  border: 1px solid var(--ds-border) !important;
+  background: var(--ds-surface) !important;
+  color: var(--ds-text-sub) !important;
+  font-size: var(--ds-size-xs) !important;
+  border-radius: var(--ds-radius-btn) !important;
+}
+
+/* ??????????????????????????????????????????????????????????????
+   24. 硫붿씤 ?몄궗?댄듃 ?⑤꼸
+?????????????????????????????????????????????????????????????? */
+.main-insight-panel {
+  background: var(--ds-surface) !important;
+  border: 1px solid var(--ds-border) !important;
+  border-radius: var(--ds-radius-card) !important;
+  box-shadow: var(--ds-shadow) !important;
+  padding: 20px 22px !important;
+}
+
+.batch-preview-button {
+  border: 1px solid var(--ds-border) !important;
+  border-radius: var(--ds-radius-card) !important;
+  background: var(--ds-surface-sub) !important;
+}
+
+.batch-preview-button:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: var(--ds-shadow-md) !important;
+}
+
+.batch-preview-button.active {
+  border-color: var(--ds-brand) !important;
+  box-shadow: 0 0 0 2px rgba(21,101,192,0.15), var(--ds-shadow-md) !important;
+}
+
+.preview-title {
+  font-size: var(--ds-size-md) !important;
+  font-weight: 800 !important;
+  color: var(--ds-text) !important;
+}
+
+.preview-caption {
+  font-size: var(--ds-size-xs) !important;
+  color: var(--ds-text-sub) !important;
+  line-height: 1.6 !important;
+}
+
+/* ??????????????????????????????????????????????????????????????
+   25. ?명듃/?뗫끂??媛?대뜕??諛뺤뒪
+?????????????????????????????????????????????????????????????? */
+.defect-rate-footnote,
+.ccp-footnote,
+.line-action-note,
+.heating-stage-guidance,
+.inspection-sampling-note,
+.factory-batch-footer {
+  border-radius: var(--ds-radius-btn) !important;
+  font-size: var(--ds-size-xs) !important;
+}
+
+.defect-rate-footnote {
+  border: 1px solid var(--ds-border) !important;
+  background: var(--ds-surface-sub) !important;
+}
+
+.ccp-footnote {
+  border: 1px solid var(--ds-border) !important;
+  background: var(--ds-surface) !important;
+}
+
+.ccp-footnote-line {
+  font-size: var(--ds-size-xxs) !important;
+  color: var(--ds-text-sub) !important;
+}
+
+.line-action-note {
+  border: 1px solid var(--ds-border) !important;
+  background: var(--ds-brand-light) !important;
+}
+
+.line-action-note-text {
+  font-size: var(--ds-size-xs) !important;
+  color: var(--ds-text) !important;
+}
+
+/* ??????????????????????????????????????????????????????????????
+   26. ??(dcc.Tabs)
+?????????????????????????????????????????????????????????????? */
+.dash-tab {
+  font-size: var(--ds-size-xs) !important;
+  font-weight: 700 !important;
+  color: var(--ds-text-sub) !important;
+  border-bottom: 2px solid transparent !important;
+  padding: 10px 16px !important;
+}
+
+.dash-tab--selected {
+  color: var(--ds-brand) !important;
+  border-bottom-color: var(--ds-brand) !important;
+}
+
+/* ??????????????????????????????????????????????????????????????
+   27. ?쇰뵒??/ 泥댄겕諛뺤뒪
+?????????????????????????????????????????????????????????????? */
+.dash-radioitems label,
+.dash-checklist label {
+  font-size: var(--ds-size-xs) !important;
+  color: var(--ds-text-sub) !important;
+  font-weight: 600 !important;
+}
+
+/* ??????????????????????????????????????????????????????????????
+   28. ?붾㈃ ?곸뿭 (screen-zone)
+?????????????????????????????????????????????????????????????? */
+.screen-zone {
+  margin-bottom: var(--ds-section-gap) !important;
+}
+
+/* ??????????????????????????????????????????????????????????????
+   29. 洹몃옒????댄? / ?고듃 (Plotly 二쇱꽍 override)
+?????????????????????????????????????????????????????????????? */
+.js-plotly-plot .plotly .xtitle,
+.js-plotly-plot .plotly .ytitle,
+.js-plotly-plot .plotly .g-xtitle text,
+.js-plotly-plot .plotly .g-ytitle text {
+  font-family: var(--ds-font) !important;
+  fill: var(--ds-text-sub) !important;
+}
+
+.js-plotly-plot .plotly .legend text {
+  font-family: var(--ds-font) !important;
+  fill: var(--ds-text) !important;
+}
+
+/* 洹몃옒??諛뺤뒪 */
+.compact-graph {
+  height: 280px !important;
+}
+
+/* ??????????????????????????????????????????????????????????????
+   30. 諛섏쓳???ㅻ쾭?쇱씠??
+?????????????????????????????????????????????????????????????? */
+@media (max-width: 1024px) {
+  :root {
+    --ds-page-p:      18px;
+    --ds-section-gap: 16px;
+    --ds-card-gap:    14px;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --ds-page-p:      14px;
+    --ds-section-gap: 14px;
+    --ds-card-gap:    12px;
+    --ds-size-xl:     18px;
+    --ds-size-lg:     15px;
+  }
+
+  .compact-kpi-card {
+    padding: 14px 16px !important;
+  }
+}
+
+/* ??????????????????????????????????????????????????????????????
+   31. DS 移대뱶 ?덉씠?꾩썐 ?좏떥由ы떚
+?????????????????????????????????????????????????????????????? */
+
+/* 怨듯넻 移대뱶 ?섑띁 ??Python?먯꽌 className="ds-card" ?ъ슜 */
+.ds-card {
+  background: var(--ds-surface);
+  border: 1px solid var(--ds-border);
+  border-radius: var(--ds-radius-card);
+  padding: 20px 24px;
+  margin-bottom: 16px;
+  box-shadow: var(--ds-shadow);
+}
+.ds-card--no-mb { margin-bottom: 0 !important; }
+.ds-card--sm    { padding: 14px 18px !important; }
+.ds-card--overflow { overflow-x: auto !important; }
+
+/* 移대뱶 ?대? ?ㅻ뜑 ??*/
+.ds-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 14px;
+}
+.ds-card-header--center { align-items: center; }
+
+/* 移대뱶 ?쒕ぉ */
+.ds-card-title {
+  font-size: var(--ds-size-md);
+  font-weight: 700;
+  color: var(--ds-text);
+  line-height: 1.3;
+  margin: 0;
+}
+.ds-card-sub {
+  font-size: var(--ds-size-xs);
+  color: var(--ds-text-muted);
+  margin-top: 3px;
+  line-height: 1.5;
+}
+.ds-card-update {
+  font-size: var(--ds-size-xxs);
+  color: var(--ds-text-muted);
+  white-space: nowrap;
+}
+
+/* ??????????????????????????????????????????????????????????????
+   32. KPI 移대뱶 ?듯빀 ?쒖뒪??
+?????????????????????????????????????????????????????????????? */
+
+/* KPI 洹몃━???섑띁 */
+.ds-kpi-grid {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 28px;
+}
+
+/* 媛쒕퀎 KPI 移대뱶 */
+.ds-kpi-card {
+  background: var(--ds-surface);
+  border: 1px solid var(--ds-border);
+  border-radius: var(--ds-radius-card);
+  padding: 18px 20px;
+  flex: 1;
+  min-width: 160px;
+  position: relative;
+  overflow: hidden;
+}
+.ds-kpi-card:hover { box-shadow: var(--ds-shadow-md); }
+
+/* ?뚰삎 KPI (heating ?섏씠吏) */
+.ds-kpi-card--sm {
+  padding: 12px 14px !important;
+  min-width: 110px !important;
+  border-radius: 10px !important;
+}
+
+.ds-kpi-label {
+  font-size: var(--ds-size-xxs);
+  color: var(--ds-text-sub);
+  font-weight: 600;
+  margin-bottom: 6px;
+  line-height: 1.4;
+}
+.ds-kpi-card--sm .ds-kpi-label { margin-bottom: 4px; }
+
+.ds-kpi-value {
+  font-size: var(--ds-size-kpi);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+}
+.ds-kpi-card--sm .ds-kpi-value { font-size: var(--ds-size-kpi-sm); }
+
+.ds-kpi-sub {
+  font-size: var(--ds-size-xxs);
+  color: var(--ds-text-muted);
+  margin-top: 4px;
+  line-height: 1.5;
+}
+.ds-kpi-card--sm .ds-kpi-sub { font-size: 10px; margin-top: 2px; }
+
+/* ??????????????????????????????????????????????????????????????
+   33. ?섏씠吏 ?ㅻ뜑 ??댄?
+?????????????????????????????????????????????????????????????? */
+.ds-page-title {
+  font-size: var(--ds-size-xl) !important;
+  font-weight: 800 !important;
+  color: var(--ds-text) !important;
+  margin-bottom: 18px !important;
+  line-height: 1.2 !important;
+  letter-spacing: -0.4px !important;
+}
+
+/* ??????????????????????????????????????????????????????????????
+   34. ?뱀뀡 ?ㅻ뜑
+?????????????????????????????????????????????????????????????? */
+.ds-section-header {
+  font-size: var(--ds-size-lg);
+  font-weight: 700;
+  color: var(--ds-text);
+  margin: 0 0 12px 0;
+  line-height: 1.3;
+  letter-spacing: -0.2px;
+}
+.ds-section-sub {
+  font-size: var(--ds-size-xs);
+  color: var(--ds-text-muted);
+  margin-top: 3px;
+  line-height: 1.5;
+}
+
+/* ??????????????????????????????????????????????????????????????
+   35. 硫붿씤 ?섏씠吏 ?쇱씤移대뱶
+?????????????????????????????????????????????????????????????? */
+.ds-line-card {
+  background: var(--ds-surface);
+  border: 1px solid var(--ds-border);
+  border-radius: var(--ds-radius-card);
+  padding: 18px 20px;
+  flex: 1;
+  min-width: 240px;
+  box-shadow: var(--ds-shadow);
+  position: relative;
+  overflow: hidden;
+}
+.ds-line-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+.ds-line-id {
+  font-size: var(--ds-size-sm);
+  font-weight: 800;
+  color: var(--ds-text);
+}
+.ds-line-batch-name {
+  font-size: var(--ds-size-xxs);
+  color: var(--ds-text-muted);
+  margin-top: 2px;
+}
+.ds-status-pill {
+  border-radius: var(--ds-radius-btn);
+  padding: 4px 10px;
+  font-size: var(--ds-size-xs);
+  font-weight: 700;
+  border: 1px solid transparent;
+}
+
+/* 硫뷀듃由???(?⑤룄/pH/?덉젙?? */
+.ds-metric-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+.ds-metric-item { flex: 1; }
+.ds-metric-label {
+  font-size: 10px;
+  color: var(--ds-text-muted);
+  margin-bottom: 2px;
+  line-height: 1.4;
+}
+.ds-metric-value {
+  font-size: var(--ds-size-sm);
+  font-weight: 700;
+  color: var(--ds-text);
+}
+
+/* 議곗튂 諛뺤뒪 */
+.ds-action-box {
+  border-radius: var(--ds-radius-btn);
+  padding: 8px 10px;
+  font-size: var(--ds-size-xs);
+  font-weight: 500;
+  border-left: 3px solid transparent;
+}
+
+/* ?쇱씤移대뱶 ?곸꽭蹂닿린 留곹겕 踰꾪듉 */
+.ds-link-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: var(--ds-size-xxs);
+  font-weight: 600;
+  color: var(--ds-brand);
+  padding: 0;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* ??????????????????????????????????????????????????????????????
+   36. CCP ?곹깭 蹂대뱶 ??(main ?섏씠吏)
+?????????????????????????????????????????????????????????????? */
+.ds-ccp-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: var(--ds-radius-btn);
+  background: var(--ds-surface-sub);
+  border: 1px solid var(--ds-border-light);
+}
+.ds-ccp-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.ds-ccp-stat-label {
+  font-size: 10px;
+  color: var(--ds-text-muted);
+  font-weight: 700;
+  line-height: 1.4;
+}
+.ds-ccp-stat-value {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--ds-text);
+  line-height: 1.1;
+}
+.ds-ccp-action-chip {
+  display: inline-flex;
+  align-items: center;
+  font-size: var(--ds-size-xs);
+  font-weight: 700;
+  border-radius: var(--ds-radius-btn);
+  padding: 6px 12px;
+  border: 1px solid transparent;
+}
+
+/* ?곹깭 ?붿빟 pills */
+.ds-summary-pill {
+  display: flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 5px 14px;
+  font-size: var(--ds-size-xs);
+  font-weight: 700;
+  gap: 4px;
+}
+.ds-summary-pill--danger { background: var(--ds-danger-bg); color: var(--ds-danger); border: 1px solid var(--ds-danger-border); }
+.ds-summary-pill--warn   { background: var(--ds-warn-bg);   color: var(--ds-warn);   border: 1px solid var(--ds-warn-border);   }
+.ds-summary-pill--ok     { background: var(--ds-ok-bg);     color: var(--ds-ok);     border: 1px solid var(--ds-ok-border);     }
+
+/* ?덈궡 footer */
+.ds-board-footer {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  border-radius: var(--ds-radius-btn);
+  padding: 14px 16px;
+}
+
+/* ??????????????????????????????????????????????????????????????
+   37. Rate bar ?⑤꼸 (main ?섏씠吏)
+?????????????????????????????????????????????????????????????? */
+.ds-rate-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--ds-border-light);
+}
+.ds-rate-label {
+  font-size: var(--ds-size-sm);
+  font-weight: 800;
+  color: var(--ds-text-sub);
+  width: 54px;
+  flex-shrink: 0;
+}
+.ds-rate-track {
+  flex: 1;
+  height: 18px;
+  background: var(--ds-surface-sub);
+  border-radius: 6px;
+  overflow: hidden;
+  min-width: 0;
+}
+.ds-rate-bar {
+  height: 100%;
+  border-radius: 6px;
+  min-width: 4px;
+  transition: width 0.4s ease;
+}
+.ds-rate-caption {
+  font-size: var(--ds-size-xxs);
+  color: var(--ds-text-muted);
+  white-space: nowrap;
+  margin-left: 8px;
+}
+.ds-rate-count {
+  font-size: 18px;
+  font-weight: 800;
+  width: 52px;
+  text-align: right;
+  flex-shrink: 0;
+}
+.ds-rate-summary {
+  display: flex;
+  align-items: center;
+  background: var(--ds-surface-sub);
+  border-radius: var(--ds-radius-btn);
+  padding: 10px 14px;
+  margin-top: 12px;
+}
+
+/* ??????????????????????????????????????????????????????????????
+   38. 怨듭젙 ?뚮줈???몃뱶 (heating ?섏씠吏)
+?????????????????????????????????????????????????????????????? */
+.ds-flow-node {
+  display: flex;
+  align-items: center;
+  padding: 10px 12px;
+  border-radius: var(--ds-radius-btn);
+  border: 1px solid var(--ds-border-light);
+  background: var(--ds-surface-sub);
+  margin-bottom: 8px;
+}
+.ds-flow-node--active {
+  background: var(--ds-brand-light) !important;
+  border: 1.5px solid var(--ds-brand) !important;
+}
+.ds-flow-node--done {
+  background: var(--ds-ok-bg) !important;
+  border-color: var(--ds-ok-border) !important;
+}
+.ds-flow-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 10px;
+  flex-shrink: 0;
+}
+.ds-flow-stage-name {
+  font-size: var(--ds-size-xs);
+  font-weight: 700;
+  color: var(--ds-text);
+  line-height: 1.3;
+}
+.ds-flow-stage-name--muted { color: var(--ds-text-muted) !important; }
+.ds-flow-stage-desc {
+  font-size: 10px;
+  color: var(--ds-text-muted);
+  margin-top: 2px;
+  line-height: 1.4;
+}
+.ds-flow-current-bar {
+  margin-top: 10px;
+  font-size: var(--ds-size-xxs);
+  font-weight: 700;
+  color: var(--ds-brand);
+  background: var(--ds-brand-light);
+  padding: 6px 10px;
+  border-radius: 6px;
+  text-align: center;
+}
+.ds-flow-batch-label {
+  font-size: var(--ds-size-xxs);
+  color: var(--ds-text-muted);
+  margin-bottom: 10px;
+}
+
+/* ??????????????????????????????????????????????????????????????
+   39. ?ㅼ뿼 ?좎궗???⑤꼸 (heating ?섏씠吏)
+?????????????????????????????????????????????????????????????? */
+.ds-sim-header {
+  border-radius: var(--ds-radius-btn);
+  padding: 12px 14px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.ds-sim-eyebrow {
+  font-size: var(--ds-size-xxs);
+  font-weight: 700;
+  color: var(--ds-text-muted);
+  margin-bottom: 2px;
+}
+.ds-sim-top-name {
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 1.1;
+}
+.ds-sim-top-score {
+  font-size: 16px;
+  font-weight: 700;
+}
+.ds-sim-stage-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+.ds-sim-stage-label {
+  font-size: var(--ds-size-xxs);
+  color: var(--ds-text);
+  font-weight: 800;
+}
+.ds-sim-pred-badge {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 999px;
+}
+.ds-sim-stage-desc {
+  font-size: 10px;
+  color: var(--ds-text-muted);
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+.ds-sim-bar-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+.ds-sim-bar-name { font-size: var(--ds-size-xxs); font-weight: 700; min-width: 80px; }
+.ds-sim-bar-track {
+  flex: 1;
+  height: 8px;
+  background: var(--ds-border);
+  border-radius: 4px;
+  overflow: hidden;
+  margin: 0 8px;
+}
+.ds-sim-bar-fill { height: 8px; border-radius: 4px; }
+.ds-sim-bar-score { font-size: var(--ds-size-xxs); font-weight: 700; min-width: 32px; text-align: right; }
+.ds-sim-factor-box {
+  background: var(--ds-surface-sub);
+  border-radius: var(--ds-radius-btn);
+  padding: 10px 12px;
+  margin-top: 8px;
+  border: 1px solid var(--ds-border-light);
+}
+.ds-sim-factor-title {
+  font-size: var(--ds-size-xxs);
+  color: var(--ds-text-muted);
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.ds-sim-factor-line {
+  font-size: var(--ds-size-xxs);
+  color: var(--ds-text);
+  margin-bottom: 3px;
+  line-height: 1.4;
+}
+
+/* ??????????????????????????????????????????????????????????????
+   40. AI ?먯젙 ?⑤꼸 (heating ?섏씠吏)
+?????????????????????????????????????????????????????????????? */
+.ds-ai-header {
+  border-radius: var(--ds-radius-btn);
+  padding: 12px 14px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.ds-ai-eyebrow {
+  font-size: var(--ds-size-xxs);
+  font-weight: 700;
+  color: var(--ds-text-muted);
+  margin-bottom: 2px;
+}
+.ds-ai-verdict {
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 1.1;
+}
+.ds-ai-criteria-box {
+  background: var(--ds-surface-sub);
+  border-radius: var(--ds-radius-btn);
+  padding: 10px 12px;
+  margin-bottom: 12px;
+  border: 1px solid var(--ds-border-light);
+}
+.ds-ai-criteria-title {
+  font-size: var(--ds-size-xxs);
+  color: var(--ds-text-muted);
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.ds-ai-criteria-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+  padding: 5px 8px;
+  border-radius: 6px;
+  margin-bottom: 3px;
+}
+.ds-ai-criteria-badge {
+  font-size: var(--ds-size-xxs);
+  font-weight: 800;
+  border-radius: 6px;
+  padding: 2px 8px;
+  min-width: 52px;
+  text-align: center;
+  border: 2px solid transparent;
+  white-space: nowrap;
+}
+.ds-ai-criteria-desc {
+  font-size: var(--ds-size-xxs);
+  margin-left: 8px;
+  line-height: 1.4;
+}
+.ds-ai-section-title {
+  font-size: var(--ds-size-xxs);
+  color: var(--ds-text-muted);
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.ds-ai-body-line {
+  font-size: var(--ds-size-xs);
+  color: var(--ds-text);
+  line-height: 1.6;
+  margin-bottom: 4px;
+}
+.ds-ai-model-box {
+  background: var(--ds-surface-sub);
+  border-radius: var(--ds-radius-btn);
+  padding: 10px 12px;
+  margin-bottom: 12px;
+  border: 1px solid var(--ds-border-light);
+}
+.ds-ai-reason-item {
+  font-size: var(--ds-size-xxs);
+  color: var(--ds-text);
+  padding: 4px 8px;
+  background: #fef9c3;
+  border-radius: 4px;
+  margin-bottom: 4px;
+  line-height: 1.4;
+}
+.ds-ai-action-box {
+  border-left: 3px solid transparent;
+  border-radius: var(--ds-radius-btn);
+  padding: 8px 12px;
+  font-size: var(--ds-size-xs);
+  font-weight: 700;
+  line-height: 1.5;
+}
+.ds-ai-stability-row {
+  margin-top: 10px;
+  border-top: 1px solid var(--ds-border-light);
+  padding-top: 10px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+.ds-ai-stability-lbl {
+  font-size: var(--ds-size-xxs);
+  color: var(--ds-text-muted);
+  font-weight: 600;
+}
+
+/* ??????????????????????????????????????????????????????????????
+   41. ?뚮엺 ?곸꽭 ?⑤꼸
+?????????????????????????????????????????????????????????????? */
+.ds-detail-cell {
+  padding: 12px 14px;
+  border: 1px solid var(--ds-border);
+  border-radius: var(--ds-radius-btn);
+  background: var(--ds-surface);
+}
+.ds-detail-label {
+  font-size: var(--ds-size-xxs);
+  font-weight: 700;
+  color: var(--ds-text-muted);
+  margin-bottom: 4px;
+  line-height: 1.4;
+}
+.ds-detail-val {
+  font-size: var(--ds-size-xs);
+  font-weight: 700;
+  color: var(--ds-text);
+  line-height: 1.5;
+}
+
+/* ??꾨씪??*/
+.ds-timeline-item {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+.ds-timeline-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-top: 4px;
+  flex-shrink: 0;
+  border: 3px solid transparent;
+}
+.ds-timeline-title {
+  font-size: var(--ds-size-xs);
+  font-weight: 800;
+  color: var(--ds-text);
+}
+.ds-timeline-caption {
+  font-size: var(--ds-size-xs);
+  color: var(--ds-text-sub);
+  line-height: 1.5;
+  margin-top: 3px;
+}
+
+/* ?대떦??紐⑤떖 */
+.ds-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(13,27,42,0.35);
+  z-index: 1999;
+}
+.ds-modal-box {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(420px, calc(100vw - 32px));
+  background: var(--ds-surface);
+  border-radius: 16px;
+  border: 1px solid var(--ds-border);
+  box-shadow: 0 24px 60px rgba(13,27,42,0.22);
+  padding: 18px;
+  z-index: 2000;
+}
+.ds-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+.ds-modal-title {
+  font-size: var(--ds-size-md);
+  font-weight: 800;
+  color: var(--ds-text);
+}
+.ds-modal-close {
+  border: 1px solid var(--ds-border);
+  background: var(--ds-surface-sub);
+  color: var(--ds-brand);
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: var(--ds-size-xs);
+  font-weight: 700;
+  cursor: pointer;
+}
+.ds-modal-close:hover {
+  background: var(--ds-brand-light);
+}
+.ds-modal-info-cell {
+  padding: 12px 14px;
+  background: var(--ds-surface-sub);
+  border: 1px solid var(--ds-border);
+  border-radius: var(--ds-radius-btn);
+  margin-top: 10px;
+}
+.ds-modal-info-label {
+  font-size: var(--ds-size-xs);
+  font-weight: 700;
+  color: var(--ds-text-sub);
+  margin-bottom: 4px;
+}
+.ds-modal-info-val {
+  font-size: var(--ds-size-md);
+  font-weight: 700;
+  color: var(--ds-brand);
+}
+
+/* ??????????????????????????????????????????????????????????????
+   42. 理쒖쥌寃??AI 蹂닿퀬??移대뱶 (inline style ?泥?
+?????????????????????????????????????????????????????????????? */
+.ds-ai-report-section {
+  padding: 10px 12px;
+  border: 1px solid var(--ds-border);
+  border-radius: var(--ds-radius-btn);
+  background: var(--ds-surface);
+  margin-bottom: 12px;
+}
+.ds-ai-report-title {
+  font-size: var(--ds-size-sm);
+  font-weight: 800;
+  color: var(--ds-text);
+  margin-bottom: 4px;
+}
+.ds-ai-report-sub {
+  font-size: var(--ds-size-xs);
+  color: var(--ds-text-sub);
+  line-height: 1.5;
+}
+.ds-ai-report-verdict {
+  font-size: 30px;
+  font-weight: 800;
+  line-height: 1.1;
+}
+.ds-ai-report-meta {
+  font-size: var(--ds-size-xs);
+  color: var(--ds-text-muted);
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+/* ??????????????????????????????????????????????????????????????
+   43. ??怨듯넻 ?뺣퉬
+?????????????????????????????????????????????????????????????? */
+
+/* 諛곗튂 ?대젰 / CCP ?댄깉 ???ㅻ뜑 */
+.ds-table { width: 100%; text-align: center; font-size: var(--ds-size-xs); table-layout: fixed; border-collapse: collapse; }
+.ds-thead-row th { padding: 10px 8px; font-size: var(--ds-size-xxs); font-weight: 700; color: var(--ds-text-sub); background: var(--ds-surface-sub); border-bottom: 1px solid var(--ds-border); }
+.ds-tbody-row td { padding: 10px 8px; font-size: var(--ds-size-xs); color: var(--ds-text); border-bottom: 1px solid var(--ds-border-light); vertical-align: middle; }
+.ds-tbody-row:hover td { background: var(--ds-brand-light); }
+
+/* ?뚮엺 ?대젰 ??*/
+.ds-alarm-tbody-row td { padding: 14px 8px; font-size: var(--ds-size-xs); border-bottom: 1px solid var(--ds-border-light); vertical-align: middle; }
+.ds-alarm-tbody-row--selected td { background: var(--ds-brand-light); }
+.ds-alarm-tbody-row--selected { box-shadow: inset 3px 0 0 var(--ds-brand); }
+
+/* ??????????????????????????????????????????????????????????????
+   44. DS 移대뱶 ?덉씠?꾩썐 ?좏떥由ы떚
+?????????????????????????????????????????????????????????????? */
+
+/* 怨듯넻 移대뱶 ?섑띁 ??Python?먯꽌 className="ds-card" ?ъ슜 */
+.ds-card {
+  background: var(--ds-surface);
+  border: 1px solid var(--ds-border);
+  border-radius: var(--ds-radius-card);
+  padding: 20px 24px;
+  margin-bottom: 16px;
+  box-shadow: var(--ds-shadow);
+}
+.ds-card--no-mb { margin-bottom: 0 !important; }
+.ds-card--sm    { padding: 14px 18px !important; }
+.ds-card--overflow { overflow-x: auto !important; }
+
+/* 移대뱶 ?대? ?ㅻ뜑 ??*/
+.ds-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 14px;
+}
+.ds-card-header--center { align-items: center; }
+
+/* 移대뱶 ?쒕ぉ */
+.ds-card-title {
+  font-size: var(--ds-size-md);
+  font-weight: 700;
+  color: var(--ds-text);
+  line-height: 1.3;
+  margin: 0;
+}
+.ds-card-sub {
+  font-size: var(--ds-size-xs);
+  color: var(--ds-text-muted);
+  margin-top: 3px;
+  line-height: 1.5;
+}
+.ds-card-update {
+  font-size: var(--ds-size-xxs);
+  color: var(--ds-text-muted);
+  white-space: nowrap;
+}
+
+/* ??????????????????????????????????????????????????????????????
+   32. KPI 移대뱶 ?듯빀 ?쒖뒪??
+?????????????????????????????????????????????????????????????? */
+
+/* KPI 洹몃━???섑띁 */
+.ds-kpi-grid {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 28px;
+}
+
+/* 媛쒕퀎 KPI 移대뱶 */
+.ds-kpi-card {
+  background: var(--ds-surface);
+  border: 1px solid var(--ds-border);
+  border-radius: var(--ds-radius-card);
+  padding: 18px 20px;
+  flex: 1;
+  min-width: 160px;
+  position: relative;
+  overflow: hidden;
+}
+.ds-kpi-card:hover { box-shadow: var(--ds-shadow-md); }
+
+/* ?뚰삎 KPI (heating ?섏씠吏) */
+.ds-kpi-card--sm {
+  padding: 12px 14px !important;
+  min-width: 110px !important;
+  border-radius: 10px !important;
+}
+
+.ds-kpi-label {
+  font-size: var(--ds-size-xxs);
+  color: var(--ds-text-sub);
+  font-weight: 600;
+  margin-bottom: 6px;
+  line-height: 1.4;
+}
+.ds-kpi-card--sm .ds-kpi-label { margin-bottom: 4px; }
+
+.ds-kpi-value {
+  font-size: var(--ds-size-kpi);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+}
+.ds-kpi-card--sm .ds-kpi-value { font-size: var(--ds-size-kpi-sm); }
+
+.ds-kpi-sub {
+  font-size: var(--ds-size-xxs);
+  color: var(--ds-text-muted);
+  margin-top: 4px;
+  line-height: 1.5;
+}
+.ds-kpi-card--sm .ds-kpi-sub { font-size: 10px; margin-top: 2px; }
+
+/* ??????????????????????????????????????????????????????????????
+   33. ?섏씠吏 ?ㅻ뜑 ??댄?
+?????????????????????????????????????????????????????????????? */
+.ds-page-title {
+  font-size: var(--ds-size-xl) !important;
+  font-weight: 800 !important;
+  color: var(--ds-text) !important;
+  margin-bottom: 18px !important;
+  line-height: 1.2 !important;
+  letter-spacing: -0.4px !important;
+}
+
+/* ??????????????????????????????????????????????????????????????
+   34. ?뱀뀡 ?ㅻ뜑
+?????????????????????????????????????????????????????????????? */
+.ds-section-header {
+  font-size: var(--ds-size-lg);
+  font-weight: 700;
+  color: var(--ds-text);
+  margin: 0 0 12px 0;
+  line-height: 1.3;
+  letter-spacing: -0.2px;
+}
+.ds-section-sub {
+  font-size: var(--ds-size-xs);
+  color: var(--ds-text-muted);
+  margin-top: 3px;
+  line-height: 1.5;
+}
+
+/* ??????????????????????????????????????????????????????????????
+   35. 硫붿씤 ?섏씠吏 ?쇱씤移대뱶
+?????????????????????????????????????????????????????????????? */
+.ds-line-card {
+  background: var(--ds-surface);
+  border: 1px solid var(--ds-border);
+  border-radius: var(--ds-radius-card);
+  padding: 18px 20px;
+  flex: 1;
+  min-width: 240px;
+  box-shadow: var(--ds-shadow);
+  position: relative;
+  overflow: hidden;
+}
+.ds-line-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+.ds-line-id {
+  font-size: var(--ds-size-sm);
+  font-weight: 800;
+  color: var(--ds-text);
+}
+.ds-line-batch-name {
+  font-size: var(--ds-size-xxs);
+  color: var(--ds-text-muted);
+  margin-top: 2px;
+}
+.ds-status-pill {
+  border-radius: var(--ds-radius-btn);
+  padding: 4px 10px;
+  font-size: var(--ds-size-xs);
+  font-weight: 700;
+  border: 1px solid transparent;
+}
+
+/* 硫뷀듃由???(?⑤룄/pH/?덉젙?? */
+.ds-metric-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+.ds-metric-item { flex: 1; }
+.ds-metric-label {
+  font-size: 10px;
+  color: var(--ds-text-muted);
+  margin-bottom: 2px;
+  line-height: 1.4;
+}
+.ds-metric-value {
+  font-size: var(--ds-size-sm);
+  font-weight: 700;
+  color: var(--ds-text);
+}
+
+/* 議곗튂 諛뺤뒪 */
+.ds-action-box {
+  border-radius: var(--ds-radius-btn);
+  padding: 8px 10px;
+  font-size: var(--ds-size-xs);
+  font-weight: 500;
+  border-left: 3px solid transparent;
+}
+
+/* ?쇱씤移대뱶 ?곸꽭蹂닿린 留곹겕 踰꾪듉 */
+.ds-link-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: var(--ds-size-xxs);
+  font-weight: 600;
+  color: var(--ds-brand);
+  padding: 0;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* ??????????????????????????????????????????????????????????????
+   36. CCP ?곹깭 蹂대뱶 ??(main ?섏씠吏)
+?????????????????????????????????????????????????????????????? */
+.ds-ccp-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: var(--ds-radius-btn);
+  background: var(--ds-surface-sub);
+  border: 1px solid var(--ds-border-light);
+}
+.ds-ccp-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.ds-ccp-stat-label {
+  font-size: 10px;
+  color: var(--ds-text-muted);
+  font-weight: 700;
+  line-height: 1.4;
+}
+.ds-ccp-stat-value {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--ds-text);
+  line-height: 1.1;
+}
+.ds-ccp-action-chip {
+  display: inline-flex;
+  align-items: center;
+  font-size: var(--ds-size-xs);
+  font-weight: 700;
+  border-radius: var(--ds-radius-btn);
+  padding: 6px 12px;
+  border: 1px solid transparent;
+}
+
+/* ?곹깭 ?붿빟 pills */
+.ds-summary-pill {
+  display: flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 5px 14px;
+  font-size: var(--ds-size-xs);
+  font-weight: 700;
+  gap: 4px;
+}
+.ds-summary-pill--danger { background: var(--ds-danger-bg); color: var(--ds-danger); border: 1px solid var(--ds-danger-border); }
+.ds-summary-pill--warn   { background: var(--ds-warn-bg);   color: var(--ds-warn);   border: 1px solid var(--ds-warn-border);   }
+.ds-summary-pill--ok     { background: var(--ds-ok-bg);     color: var(--ds-ok);     border: 1px solid var(--ds-ok-border);     }
+
+/* ?덈궡 footer */
+.ds-board-footer {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  border-radius: var(--ds-radius-btn);
+  padding: 14px 16px;
+}
+
+/* ??????????????????????????????????????????????????????????????
+   37. Rate bar ?⑤꼸 (main ?섏씠吏)
+?????????????????????????????????????????????????????????????? */
+.ds-rate-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--ds-border-light);
+}
+.ds-rate-label {
+  font-size: var(--ds-size-sm);
+  font-weight: 800;
+  color: var(--ds-text-sub);
+  width: 54px;
+  flex-shrink: 0;
+}
+.ds-rate-track {
+  flex: 1;
+  height: 18px;
+  background: var(--ds-surface-sub);
+  border-radius: 6px;
+  overflow: hidden;
+  min-width: 0;
+}
+.ds-rate-bar {
+  height: 100%;
+  border-radius: 6px;
+  min-width: 4px;
+  transition: width 0.4s ease;
+}
+.ds-rate-caption {
+  font-size: var(--ds-size-xxs);
+  color: var(--ds-text-muted);
+  white-space: nowrap;
+  margin-left: 8px;
+}
+.ds-rate-count {
+  font-size: 18px;
+  font-weight: 800;
+  width: 52px;
+  text-align: right;
+  flex-shrink: 0;
+}
+.ds-rate-summary {
+  display: flex;
+  align-items: center;
+  background: var(--ds-surface-sub);
+  border-radius: var(--ds-radius-btn);
+  padding: 10px 14px;
+  margin-top: 12px;
+}
+
+/* ??????????????????????????????????????????????????????????????
+   38. 怨듭젙 ?뚮줈???몃뱶 (heating ?섏씠吏)
+?????????????????????????????????????????????????????????????? */
+.ds-flow-node {
+  display: flex;
+  align-items: center;
+  padding: 10px 12px;
+  border-radius: var(--ds-radius-btn);
+  border: 1px solid var(--ds-border-light);
+  background: var(--ds-surface-sub);
+  margin-bottom: 8px;
+}
+.ds-flow-node--active {
+  background: var(--ds-brand-light) !important;
+  border: 1.5px solid var(--ds-brand) !important;
+}
+.ds-flow-node--done {
+  background: var(--ds-ok-bg) !important;
+  border-color: var(--ds-ok-border) !important;
+}
+.ds-flow-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 10px;
+  flex-shrink: 0;
+}
+.ds-flow-stage-name {
+  font-size: var(--ds-size-xs);
+  font-weight: 700;
+  color: var(--ds-text);
+  line-height: 1.3;
+}
+.ds-flow-stage-name--muted { color: var(--ds-text-muted) !important; }
+.ds-flow-stage-desc {
+  font-size: 10px;
+  color: var(--ds-text-muted);
+  margin-top: 2px;
+  line-height: 1.4;
+}
+.ds-flow-current-bar {
+  margin-top: 10px;
+  font-size: var(--ds-size-xxs);
+  font-weight: 700;
+  color: var(--ds-brand);
+  background: var(--ds-brand-light);
+  padding: 6px 10px;
+  border-radius: 6px;
+  text-align: center;
+}
+.ds-flow-batch-label {
+  font-size: var(--ds-size-xxs);
+  color: var(--ds-text-muted);
+  margin-bottom: 10px;
+}
+
+/* ??????????????????????????????????????????????????????????????
+   39. ?ㅼ뿼 ?좎궗???⑤꼸 (heating ?섏씠吏)
+?????????????????????????????????????????????????????????????? */
+.ds-sim-header {
+  border-radius: var(--ds-radius-btn);
+  padding: 12px 14px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.ds-sim-eyebrow {
+  font-size: var(--ds-size-xxs);
+  font-weight: 700;
+  color: var(--ds-text-muted);
+  margin-bottom: 2px;
+}
+.ds-sim-top-name {
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 1.1;
+}
+.ds-sim-top-score {
+  font-size: 16px;
+  font-weight: 700;
+}
+.ds-sim-stage-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+.ds-sim-stage-label {
+  font-size: var(--ds-size-xxs);
+  color: var(--ds-text);
+  font-weight: 800;
+}
+.ds-sim-pred-badge {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 999px;
+}
+.ds-sim-stage-desc {
+  font-size: 10px;
+  color: var(--ds-text-muted);
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+.ds-sim-bar-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+.ds-sim-bar-name { font-size: var(--ds-size-xxs); font-weight: 700; min-width: 80px; }
+.ds-sim-bar-track {
+  flex: 1;
+  height: 8px;
+  background: var(--ds-border);
+  border-radius: 4px;
+  overflow: hidden;
+  margin: 0 8px;
+}
+.ds-sim-bar-fill { height: 8px; border-radius: 4px; }
+.ds-sim-bar-score { font-size: var(--ds-size-xxs); font-weight: 700; min-width: 32px; text-align: right; }
+.ds-sim-factor-box {
+  background: var(--ds-surface-sub);
+  border-radius: var(--ds-radius-btn);
+  padding: 10px 12px;
+  margin-top: 8px;
+  border: 1px solid var(--ds-border-light);
+}
+.ds-sim-factor-title {
+  font-size: var(--ds-size-xxs);
+  color: var(--ds-text-muted);
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.ds-sim-factor-line {
+  font-size: var(--ds-size-xxs);
+  color: var(--ds-text);
+  margin-bottom: 3px;
+  line-height: 1.4;
+}
+
+/* ??????????????????????????????????????????????????????????????
+   40. AI ?먯젙 ?⑤꼸 (heating ?섏씠吏)
+?????????????????????????????????????????????????????????????? */
+.ds-ai-header {
+  border-radius: var(--ds-radius-btn);
+  padding: 12px 14px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.ds-ai-eyebrow {
+  font-size: var(--ds-size-xxs);
+  font-weight: 700;
+  color: var(--ds-text-muted);
+  margin-bottom: 2px;
+}
+.ds-ai-verdict {
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 1.1;
+}
+.ds-ai-criteria-box {
+  background: var(--ds-surface-sub);
+  border-radius: var(--ds-radius-btn);
+  padding: 10px 12px;
+  margin-bottom: 12px;
+  border: 1px solid var(--ds-border-light);
+}
+.ds-ai-criteria-title {
+  font-size: var(--ds-size-xxs);
+  color: var(--ds-text-muted);
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.ds-ai-criteria-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+  padding: 5px 8px;
+  border-radius: 6px;
+  margin-bottom: 3px;
+}
+.ds-ai-criteria-badge {
+  font-size: var(--ds-size-xxs);
+  font-weight: 800;
+  border-radius: 6px;
+  padding: 2px 8px;
+  min-width: 52px;
+  text-align: center;
+  border: 2px solid transparent;
+  white-space: nowrap;
+}
+.ds-ai-criteria-desc {
+  font-size: var(--ds-size-xxs);
+  margin-left: 8px;
+  line-height: 1.4;
+}
+.ds-ai-section-title {
+  font-size: var(--ds-size-xxs);
+  color: var(--ds-text-muted);
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.ds-ai-body-line {
+  font-size: var(--ds-size-xs);
+  color: var(--ds-text);
+  line-height: 1.6;
+  margin-bottom: 4px;
+}
+.ds-ai-model-box {
+  background: var(--ds-surface-sub);
+  border-radius: var(--ds-radius-btn);
+  padding: 10px 12px;
+  margin-bottom: 12px;
+  border: 1px solid var(--ds-border-light);
+}
+.ds-ai-reason-item {
+  font-size: var(--ds-size-xxs);
+  color: var(--ds-text);
+  padding: 4px 8px;
+  background: #fef9c3;
+  border-radius: 4px;
+  margin-bottom: 4px;
+  line-height: 1.4;
+}
+.ds-ai-action-box {
+  border-left: 3px solid transparent;
+  border-radius: var(--ds-radius-btn);
+  padding: 8px 12px;
+  font-size: var(--ds-size-xs);
+  font-weight: 700;
+  line-height: 1.5;
+}
+.ds-ai-stability-row {
+  margin-top: 10px;
+  border-top: 1px solid var(--ds-border-light);
+  padding-top: 10px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+.ds-ai-stability-lbl {
+  font-size: var(--ds-size-xxs);
+  color: var(--ds-text-muted);
+  font-weight: 600;
+}
+
+/* ??????????????????????????????????????????????????????????????
+   41. ?뚮엺 ?곸꽭 ?⑤꼸
+?????????????????????????????????????????????????????????????? */
+.ds-detail-cell {
+  padding: 12px 14px;
+  border: 1px solid var(--ds-border);
+  border-radius: var(--ds-radius-btn);
+  background: var(--ds-surface);
+}
+.ds-detail-label {
+  font-size: var(--ds-size-xxs);
+  font-weight: 700;
+  color: var(--ds-text-muted);
+  margin-bottom: 4px;
+  line-height: 1.4;
+}
+.ds-detail-val {
+  font-size: var(--ds-size-xs);
+  font-weight: 700;
+  color: var(--ds-text);
+  line-height: 1.5;
+}
+
+/* ??꾨씪??*/
+.ds-timeline-item {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+.ds-timeline-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-top: 4px;
+  flex-shrink: 0;
+  border: 3px solid transparent;
+}
+.ds-timeline-title {
+  font-size: var(--ds-size-xs);
+  font-weight: 800;
+  color: var(--ds-text);
+}
+.ds-timeline-caption {
+  font-size: var(--ds-size-xs);
+  color: var(--ds-text-sub);
+  line-height: 1.5;
+  margin-top: 3px;
+}
+
+/* ?대떦??紐⑤떖 */
+.ds-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(13,27,42,0.35);
+  z-index: 1999;
+}
+.ds-modal-box {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(420px, calc(100vw - 32px));
+  background: var(--ds-surface);
+  border-radius: 16px;
+  border: 1px solid var(--ds-border);
+  box-shadow: 0 24px 60px rgba(13,27,42,0.22);
+  padding: 18px;
+  z-index: 2000;
+}
+.ds-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+.ds-modal-title {
+  font-size: var(--ds-size-md);
+  font-weight: 800;
+  color: var(--ds-text);
+}
+.ds-modal-close {
+  border: 1px solid var(--ds-border);
+  background: var(--ds-surface-sub);
+  color: var(--ds-brand);
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: var(--ds-size-xs);
+  font-weight: 700;
+  cursor: pointer;
+}
+.ds-modal-close:hover {
+  background: var(--ds-brand-light);
+}
+.ds-modal-info-cell {
+  padding: 12px 14px;
+  background: var(--ds-surface-sub);
+  border: 1px solid var(--ds-border);
+  border-radius: var(--ds-radius-btn);
+  margin-top: 10px;
+}
+.ds-modal-info-label {
+  font-size: var(--ds-size-xs);
+  font-weight: 700;
+  color: var(--ds-text-sub);
+  margin-bottom: 4px;
+}
+.ds-modal-info-val {
+  font-size: var(--ds-size-md);
+  font-weight: 700;
+  color: var(--ds-brand);
+}
+
+/* ??????????????????????????????????????????????????????????????
+   42. 理쒖쥌寃??AI 蹂닿퀬??移대뱶 (inline style ?泥?
+?????????????????????????????????????????????????????????????? */
+.ds-ai-report-section {
+  padding: 10px 12px;
+  border: 1px solid var(--ds-border);
+  border-radius: var(--ds-radius-btn);
+  background: var(--ds-surface);
+  margin-bottom: 12px;
+}
+.ds-ai-report-title {
+  font-size: var(--ds-size-sm);
+  font-weight: 800;
+  color: var(--ds-text);
+  margin-bottom: 4px;
+}
+.ds-ai-report-sub {
+  font-size: var(--ds-size-xs);
+  color: var(--ds-text-sub);
+  line-height: 1.5;
+}
+.ds-ai-report-verdict {
+  font-size: 30px;
+  font-weight: 800;
+  line-height: 1.1;
+}
+.ds-ai-report-meta {
+  font-size: var(--ds-size-xs);
+  color: var(--ds-text-muted);
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+/* ??????????????????????????????????????????????????????????????
+   43. ??怨듯넻 ?뺣퉬
+?????????????????????????????????????????????????????????????? */
+
+/* 諛곗튂 ?대젰 / CCP ?댄깉 ???ㅻ뜑 */
+.ds-table { width: 100%; text-align: center; font-size: var(--ds-size-xs); table-layout: fixed; border-collapse: collapse; }
+.ds-thead-row th { padding: 10px 8px; font-size: var(--ds-size-xxs); font-weight: 700; color: var(--ds-text-sub); background: var(--ds-surface-sub); border-bottom: 1px solid var(--ds-border); }
+.ds-tbody-row td { padding: 10px 8px; font-size: var(--ds-size-xs); color: var(--ds-text); border-bottom: 1px solid var(--ds-border-light); vertical-align: middle; }
+.ds-tbody-row:hover td { background: var(--ds-brand-light); }
+
+/* ?뚮엺 ?대젰 ??*/
+.ds-alarm-tbody-row td { padding: 14px 8px; font-size: var(--ds-size-xs); border-bottom: 1px solid var(--ds-border-light); vertical-align: middle; }
+.ds-alarm-tbody-row--selected td { background: var(--ds-brand-light); }
+.ds-alarm-tbody-row--selected { box-shadow: inset 3px 0 0 var(--ds-brand); }
+
+/* ??????????????????????????????????????????????????????????????
+   44. ?듯빀 諛곗? ?쒖뒪??(.ds-badge)
+   Python?먯꽌 className="ds-badge ds-badge--{tone} ds-badge--{size}"
+   ?뺥깭濡??ъ슜. html.Div / html.Span 紐⑤몢 ?명솚.
+?????????????????????????????????????????????????????????????? */
+.ds-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--ds-font);
+  font-weight: 700;
+  border-radius: var(--ds-radius-badge);
+  white-space: nowrap;
+  border: 1px solid transparent;
+  letter-spacing: 0;
+  line-height: 1;
+}
+
+.ds-badge--sm { font-size: var(--ds-size-xxs); padding: 4px 10px; }
+.ds-badge--md { font-size: var(--ds-size-xs);  padding: 5px 13px; }
+
+.ds-badge--ok     { background: var(--ds-ok-bg);     color: var(--ds-ok);     border-color: var(--ds-ok-border);     }
+.ds-badge--warn   { background: var(--ds-warn-bg);   color: var(--ds-warn);   border-color: var(--ds-warn-border);   }
+.ds-badge--danger { background: var(--ds-danger-bg); color: var(--ds-danger); border-color: var(--ds-danger-border); }
+.ds-badge--idle   { background: var(--ds-idle-bg);   color: var(--ds-idle);   border-color: var(--ds-idle-border);   }
+.ds-badge--info   { background: #eff6ff;             color: #1d4ed8;          border-color: #bfdbfe;                 }
+
+/* ??????????????????????????????????????????????????????????????
+   32. ?섏씠吏 ?쒕ぉ + ?뱀뀡 ?ㅻ뜑 DS ?뺥빀
+?????????????????????????????????????????????????????????????? */
+.ds-page-title {
+  font-size: var(--ds-size-xl);
+  font-weight: 800;
+  color: var(--ds-text);
+  margin-bottom: 18px;
+  line-height: 1.2;
+  letter-spacing: -0.4px;
+}
+
+.ds-section-header {
+  font-size: var(--ds-size-lg);
+  font-weight: 700;
+  color: var(--ds-text);
+  margin: 0;
+  line-height: 1.3;
+  letter-spacing: -0.2px;
+}
+
+.ds-section-sub {
+  font-size: var(--ds-size-xs);
+  color: var(--ds-text-muted);
+  margin-top: 3px;
+  line-height: 1.5;
+}
+
+/* H1/H2/H3 inline style ?泥?*/
+h1.section-title,
+h2.section-title,
+h3.section-title {
+  color: var(--ds-text) !important;
+  letter-spacing: -0.3px !important;
+}
+
+/* 移대뱶 ?대? h2/h3 ?됱긽 媛뺤젣 ?뺥빀 */
+.chart-box h2, .chart-box h3,
+[class*="CARD_STYLE"] h2, [class*="CARD_STYLE"] h3 {
+  color: var(--ds-text) !important;
+}
+
+/* ??????????????????????????????????????????????????????????????
+   33. ?ㅽ겕濡ㅻ컮 湲濡쒕쾶
+?????????????????????????????????????????????????????????????? */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--ds-border) transparent;
+}
+
+*::-webkit-scrollbar        { width: 5px; height: 5px; }
+*::-webkit-scrollbar-track  { background: transparent; }
+*::-webkit-scrollbar-thumb  { background: var(--ds-border); border-radius: 4px; }
+
+/* ?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧
+   45. ?ㅻ뜑 踰꾪듉 / KPI ?꾩씠肄?移대뱶 / ?섏씠吏 ?쒕툕??댄?
+   (李멸퀬 ?대?吏 湲곗? 硫붿씤 ??쒕낫???ш뎄??
+?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧 */
+
+/* ?ㅻ뜑 釉뚮옖???띿뒪??*/
+.header-brand-text {
+  font-size: 14px;
+  font-weight: 700;
+  color: #111827;
+  letter-spacing: -0.1px;
+}
+
+/* ?ㅻ뜑 ?쒓퀎 */
+.header-clock {
+  font-size: 13px;
+  font-weight: 600;
+  color: #374151;
+  background: #f8fafc;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 0 13px;
+  height: 36px;
+  min-width: 108px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 0.2px;
+  flex-shrink: 0;
+}
+
+/* ?ㅻ뜑 ?꾩씠肄?踰꾪듉 (?뺤궗媛곹삎 36횞36) */
+.header-btn {
+  height: 36px !important;
+  width: 36px !important;
+  min-width: 36px !important;
+  background: #f8fafc !important;
+  border: 1px solid #e5e7eb !important;
+  border-radius: 8px !important;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px !important;
+  cursor: pointer;
+  color: #374151 !important;
+  padding: 0 !important;
+  position: relative;
+  flex-shrink: 0;
+  line-height: 1;
+  transition: background 0.13s, border-color 0.13s;
+}
+.header-btn:hover {
+  background: #f0f4f8 !important;
+  border-color: #d1d5db !important;
+}
+
+/* ?ㅻ뜑 ?뚮┝ 諛곗? (red dot with number) */
+.header-badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: #ef4444;
+  color: white;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 800;
+  min-width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 3px;
+  line-height: 1;
+  border: 1.5px solid white;
+}
+
+/* ?ㅻ뜑 pill 踰꾪듉 (蹂닿퀬?? AI) */
+.header-pill {
+  height: 36px !important;
+  background: #f8fafc !important;
+  border: 1px solid #e5e7eb !important;
+  border-radius: 8px !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  color: #374151 !important;
+  cursor: pointer;
+  padding: 0 16px !important;
+  display: inline-flex !important;
+  align-items: center;
+  gap: 5px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: background 0.13s, border-color 0.13s;
+}
+.header-pill:hover {
+  background: #f0f4f8 !important;
+  border-color: #d1d5db !important;
+}
+.header-ai-pill {
+  color: #4f46e5 !important;
+  border-color: #c7d2fe !important;
+  background: #eef2ff !important;
+}
+.header-ai-pill:hover {
+  background: #e0e7ff !important;
+  border-color: #a5b4fc !important;
+}
+
+/* ?섏씠吏 ?쒕툕??댄? */
+.ds-page-subtitle {
+  font-size: 13px;
+  color: #6b7280;
+  font-weight: 400;
+  margin-top: 4px;
+  margin-bottom: 18px;
+  line-height: 1.5;
+}
+
+/* KPI 移대뱶 ???꾩씠肄??ы븿 ?덉씠?꾩썐 */
+.ds-kpi-card--icon {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 22px !important;
+  border-left: none !important;  /* 醫뚯륫 ?ъ씤???쇱씤 ?쒓굅 (?꾩씠肄섏씠 ?泥? */
+}
+.ds-kpi-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  flex-shrink: 0;
+  line-height: 1;
+}
+.ds-kpi-text {
+  flex: 1;
+  min-width: 0;
+}
+.ds-kpi-card--icon .ds-kpi-label {
+  font-size: 12px;
+  color: #6b7280;
+  font-weight: 500;
+  margin-bottom: 3px;
+  line-height: 1.3;
+}
+.ds-kpi-card--icon .ds-kpi-value {
+  font-size: 30px;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.5px;
+  margin-bottom: 4px;
+}
+.ds-kpi-card--icon .ds-kpi-sub {
+  font-size: 11px;
+  color: #9ca3af;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+/* ?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧
+   45. Pair Card ?ㅻ쾭?쇱씠????二???쒕낫???섎떒 2??移대뱶
+   (?숈씪 CSS 洹쒖튃???뚯씪 ??以묐났 ?뺤쓽?섏뼱 ?덉뼱
+    留덉?留됱뿉 ?좎뼵??洹쒖튃???곗꽑?⑸땲??
+?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧 */
+.ds-ccp-row {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  padding: 9px 14px !important;
+  border-radius: 10px !important;
+  background: var(--ds-surface-sub) !important;
+}
+.ds-ccp-row-left {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  flex: 0 0 158px;
+}
+.ds-ccp-line-name {
+  font-size: 13px;
+  font-weight: 700;
+  color: #0f172a;
+}
+.ds-ccp-dot {
+  width: 10px !important;
+  height: 10px !important;
+  border-radius: 50% !important;
+  flex-shrink: 0 !important;
+}
+.ds-ccp-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
+  flex: 1;
+}
+.ds-ccp-stat-label {
+  font-size: 10px !important;
+  color: var(--ds-text-muted) !important;
+  font-weight: 600 !important;
+  line-height: 1.3 !important;
+}
+.ds-ccp-stat-value {
+  font-size: 14px !important;
+  font-weight: 800 !important;
+  color: var(--ds-text) !important;
+  line-height: 1.2 !important;
+}
+.ds-ccp-action-chip {
+  display: inline-flex !important;
+  align-items: center !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  border-radius: 6px !important;
+  padding: 4px 10px !important;
+  flex-shrink: 0 !important;
+}
+.ds-pair-footer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 2px 2px;
+}
+.ds-rate-row {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  padding: 8px 0 !important;
+  border-bottom: 1px solid var(--ds-border-light) !important;
+}
+.ds-rate-track {
+  flex: 1 !important;
+  height: 14px !important;
+  background: var(--ds-surface-sub) !important;
+  border-radius: 6px !important;
+  overflow: hidden !important;
+  min-width: 0 !important;
+}
+
+/* ?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧
+   46. Line Card 由щ뵒?먯씤 (硫붿씤 ??쒕낫???쇱씤蹂?利됱떆議곗튂 ?뱀뀡)
+?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧 */
+/* ?몃? ?뱀뀡 而⑦뀒?대꼫 */
+.ds-lc-section {
+  background: #ffffff;
+  border: 1px solid #dde3ec;
+  border-radius: 18px;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 1px 4px rgba(13,27,42,0.06), 0 4px 14px rgba(13,27,42,0.05);
+}
+/* ?대? 移대뱶 洹몃━??*/
+.ds-lc-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  align-items: stretch;
+}
+/* ?대? ?쇱씤 移대뱶 */
+.ds-lc-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 18px 18px 12px;
+  box-shadow: 0 2px 8px rgba(13,27,42,0.08), 0 1px 3px rgba(13,27,42,0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  overflow: hidden;
+}
+/* ?ㅻ뜑 */
+.ds-lc-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+.ds-lc-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: #0f172a;
+  line-height: 1.2;
+}
+.ds-lc-batch {
+  font-size: 12px;
+  color: #9ca3af;
+  margin-top: 3px;
+  font-weight: 500;
+}
+/* 援щ텇??*/
+.ds-lc-hr {
+  border: none;
+  border-top: 1px solid #f1f5f9;
+  margin: 10px 0;
+}
+/* ?듭떖 吏??3??*/
+.ds-lc-metrics-row {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+}
+.ds-lc-metric {
+  flex: 1;
+  padding: 0 12px;
+}
+.ds-lc-metric:first-child { padding-left: 0; }
+.ds-lc-divider {
+  width: 1px;
+  background: #e5e7eb;
+  flex-shrink: 0;
+  margin: 2px 0;
+}
+.ds-lc-label {
+  font-size: 11px;
+  color: #9ca3af;
+  font-weight: 600;
+  margin-bottom: 4px;
+  line-height: 1.4;
+}
+.ds-lc-value {
+  font-size: 15px;
+  font-weight: 700;
+  color: #0f172a;
+  line-height: 1.3;
+}
+/* ?ㅼ뿼????*/
+.ds-lc-contam-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+/* 議곗튂 ?ы빆 諛뺤뒪 */
+.ds-lc-action-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+/* ?꾩씠肄?諛곗? */
+.ds-lc-action-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 14px;
+  filter: brightness(0) invert(1);
+}
+/* 留곹겕 ??*/
+.ds-lc-link-row {
+  margin-top: auto;
+  padding-top: 10px;
+  text-align: right;
+}

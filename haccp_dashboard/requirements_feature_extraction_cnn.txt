@@ -1,0 +1,21 @@
+# CNN feature extraction deps (optional)
+#
+# 목적: `feature_extraction.py --mode cnn_intermediate|cnn_fusion_ready` 실행.
+# - 이 모드는 `CNN 파일/mobilenetv2_final_full.pt`(torchvision MobileNetV2)로부터
+#   pooled 1280-dim feature 및 class probabilities를 추출합니다.
+#
+# 설치(권장: Python 3.12 feature venv `C:\haccp_dashboard\.venv_feat312`):
+#   .\.venv_feat312\Scripts\pip install -r haccp_dashboard\requirements_feature_extraction_cnn.txt
+
+Pillow>=10.3.0
+
+# Keep compatible with pandas==2.2.0 / tensorflow==2.17.x stacks.
+numpy>=1.26.0,<2
+
+# PyTorch/torchvision은 환경(CPU/GPU)에 따라 설치 옵션이 달라질 수 있습니다.
+# 기본 pip 설치는 CPU wheel을 받습니다.
+torch>=2.2.0
+torchvision>=0.17.0
+
+# torch 2.11.x (CPU) wheels may require setuptools<82.
+setuptools<82

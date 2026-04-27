@@ -1,0 +1,1 @@
+# HACCP Dashboard components package
