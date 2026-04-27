@@ -29,7 +29,7 @@ MILK_QUALITY_MOCK_BATCHES = {
         "counts": [18, 19, 20, 19, 20, 21, 20],
     },
 }
-
+pd.read_csv(), load_model(),
 
 def get_milk_quality_batch_ids():
     return list(MILK_QUALITY_MOCK_BATCHES.keys())
