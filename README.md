@@ -39,13 +39,37 @@ pip install -r haccp_dashboard\requirements.txt
 ### 2) 환경변수
 `haccp_dashboard\.env.example`을 `.env`로 복사 후 값 채우기.
 
-### 3) 모델 가중치
-`*.pt`, `*.pth`, `*.keras` 파일은 용량 문제로 저장소에 포함되지 않습니다.
-별도 배포본을 받아 다음 위치에 배치:
-- `haccp_dashboard/CNN 파일/mobilenetv2_final_full.pt`
-- `haccp_dashboard/CNN 파일/mobilenetv2_final.pth`
-- `haccp_dashboard/models/track1_inception_fold5.keras`
-- `haccp_dashboard/models/track2_inception_fold5.keras`
+### 3) 데이터셋 / 모델 가중치 다운로드
+
+대용량 데이터셋(이미지) 및 모델 가중치(`*.pt`, `*.keras`)는 저장소에 포함되지 않으며, **GitHub Release**에서 별도로 배포합니다.
+
+- 다운로드: [haccp_dashboard_release_v1.zip](https://github.com/juhan9437-dotcom/haccp_dashboard/releases/download/v1.0/haccp_dashboard_release_v1.zip) (약 173 MB)
+- Release 페이지: https://github.com/juhan9437-dotcom/haccp_dashboard/releases/tag/v1.0
+
+**zip 내용**
+| 경로 | 설명 |
+|---|---|
+| `csv/batch_150_contaminated_onlylabel_final_v4.csv` | 메인 학습/추론 CSV |
+| `csv/sample_inference_input_19f.csv` | 추론 샘플 입력 |
+| `models/cnn/mobilenetv2_final_full.pt` (+ JSON 3종) | MobileNetV2 이미지 모델 |
+| `models/sensor/track1_inception_fold5.keras` | 센서 track1 모델 |
+| `models/sensor/track2_inception_fold5.keras` | 센서 track2 모델 |
+| `images/{pure_milk,water_mixed,glucose_mixed}/` | 이미지 샘플 1000장 (비율 0.7 / 0.2 / 0.1) |
+
+**압축 해제 후 배치 위치**
+```
+csv/*.csv                            →  haccp_dashboard/
+models/cnn/*                         →  haccp_dashboard/CNN 파일/
+models/sensor/*.keras                →  haccp_dashboard/models/
+images/<class>/*.png                 →  haccp_dashboard/resize_640 x 360/<class>/
+```
+
+> 전체 이미지(6000장, 약 810 MB)가 필요한 경우 별도 문의하세요. Release zip 은 학습/추론 검증에 충분한 1000장만 포함합니다.
+
+데이터셋 재생성:
+```powershell
+python scripts\export_dataset.py --total 1000 --clean
+```
 
 ### 4) 실행
 ```powershell
