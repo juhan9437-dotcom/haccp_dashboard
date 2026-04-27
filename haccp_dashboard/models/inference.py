@@ -76,13 +76,23 @@ def _load_assets_once():
     _LOAD_ATTEMPTED = True
 
     try:
+        # Reduce TF memory/log overhead on tiny hosts (e.g. Render free 512MB).
+        os.environ.setdefault("TF_CPP_MIN_LOG_LEVEL", "3")
+        os.environ.setdefault("CUDA_VISIBLE_DEVICES", "-1")
+
         import joblib
         import tensorflow as tf
         from tensorflow.keras.models import load_model
 
+        try:
+            tf.config.threading.set_inter_op_parallelism_threads(1)
+            tf.config.threading.set_intra_op_parallelism_threads(1)
+        except Exception:
+            pass
+
         missing_paths = [
             str(path)
-            for path in (SCALER_PATH, TRACK1_MODEL_PATH, TRACK2_MODEL_PATH)
+            for path in (SCALER_PATH, TRACK1_MODEL_PATH)
             if not path.exists()
         ]
         if missing_paths:
@@ -90,13 +100,28 @@ def _load_assets_once():
 
         _TF = tf
         _SCALER = joblib.load(SCALER_PATH)
+        # Only load track1 here; track2 is loaded on demand to halve baseline RAM.
         _MODEL_TRACK1 = load_model(
             TRACK1_MODEL_PATH,
             custom_objects={"focal_loss_fn": binary_focal_loss(gamma=2.0, alpha=0.33)},
+            compile=False,
         )
+    except Exception as exc:
+        _LOAD_ERROR = str(exc)
+
+
+def _load_track2_once():
+    global _MODEL_TRACK2, _LOAD_ERROR
+    if _MODEL_TRACK2 is not None or _LOAD_ERROR is not None:
+        return
+    try:
+        from tensorflow.keras.models import load_model
+        if not TRACK2_MODEL_PATH.exists():
+            raise FileNotFoundError(f"Missing track2 asset: {TRACK2_MODEL_PATH}")
         _MODEL_TRACK2 = load_model(
             TRACK2_MODEL_PATH,
             custom_objects={"focal_loss_fn": binary_focal_loss(gamma=3.0, alpha=0.5)},
+            compile=False,
         )
     except Exception as exc:
         _LOAD_ERROR = str(exc)
@@ -107,7 +132,9 @@ def get_inference_status(attempt_load: bool = False) -> dict:
         _load_assets_once()
 
     return {
-        "ready": _SCALER is not None and _MODEL_TRACK1 is not None and _MODEL_TRACK2 is not None,
+        # track1 readiness reflects baseline serving capability;
+        # track2 is loaded lazily when contamination is suspected.
+        "ready": _SCALER is not None and _MODEL_TRACK1 is not None,
         "error": _LOAD_ERROR,
         "load_attempted": _LOAD_ATTEMPTED,
         "model_dir": str(MODEL_DIR),
@@ -227,6 +254,9 @@ def predict_contamination(raw_df: pd.DataFrame) -> dict:
         label = "no"
         track2_score = 0.0
     else:
+        _load_track2_once()
+        if _LOAD_ERROR is not None or _MODEL_TRACK2 is None:
+            raise RuntimeError(_LOAD_ERROR or "track2 model unavailable")
         track2_score = float(_MODEL_TRACK2.predict(input_3d, verbose=0)[0][0])
         label = "bio" if track2_score < OPTIMAL_THRESHOLD else "chem"
 

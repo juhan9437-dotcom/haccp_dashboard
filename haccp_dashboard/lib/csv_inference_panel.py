@@ -5,7 +5,12 @@ import pandas as pd
 from dash import html
 
 from .main_helpers import get_openai_chat_model, get_openai_client, get_openai_timeout_seconds
-from haccp_dashboard.models import get_inference_status, predict_contamination
+
+
+def _lazy_models():
+    # Defer heavy TF model imports until the user actually triggers CSV inference.
+    from haccp_dashboard.models import get_inference_status, predict_contamination
+    return get_inference_status, predict_contamination
 
 PREDICTION_META = {
     "no": {
@@ -53,6 +58,7 @@ def _prediction_badge(label, tone):
 
 
 def build_csv_upload_status_panel(upload_data=None, error_message=None):
+    get_inference_status, _ = _lazy_models()
     inference_status = get_inference_status()
     status_title = "모델 자산 준비 완료" if inference_status["assets_present"] else "모델 자산 준비 필요"
     status_tone = "safe" if inference_status["assets_present"] else "warning"
@@ -440,6 +446,7 @@ def resolve_csv_inference_result(n_clicks, upload_data):
     if not upload_data or not n_clicks:
         return build_csv_inference_idle_panel()
 
+    _, predict_contamination = _lazy_models()
     try:
         raw_df = pd.read_json(io.StringIO(upload_data["data"]), orient="split")
         result = predict_contamination(raw_df)
