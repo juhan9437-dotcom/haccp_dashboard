@@ -76,19 +76,29 @@ def _download(url: str, dest: Path) -> None:
 
 
 def _extract(zip_path: Path) -> None:
+    """Extract using EXTRACT_MAP. Tolerates an optional wrapper folder
+    (e.g. zip contains 'dataset_export/csv/...' instead of 'csv/...')."""
     with zipfile.ZipFile(zip_path) as zf:
-        names = zf.namelist()
-        for name in names:
+        for name in zf.namelist():
             if name.endswith("/"):
                 continue
+            norm = name.replace("\\", "/")
             for prefix, dest_root in EXTRACT_MAP:
-                if name.startswith(prefix):
-                    rel = name[len(prefix):]
-                    out = dest_root / rel
-                    out.parent.mkdir(parents=True, exist_ok=True)
-                    with zf.open(name) as src, open(out, "wb") as dst:
-                        shutil.copyfileobj(src, dst)
-                    break
+                rel = None
+                if norm.startswith(prefix):
+                    rel = norm[len(prefix):]
+                else:
+                    needle = "/" + prefix
+                    idx = norm.find(needle)
+                    if idx >= 0:
+                        rel = norm[idx + len(needle):]
+                if rel is None or rel == "":
+                    continue
+                out = dest_root / rel
+                out.parent.mkdir(parents=True, exist_ok=True)
+                with zf.open(name) as src, open(out, "wb") as dst:
+                    shutil.copyfileobj(src, dst)
+                break
 
 
 def main() -> int:
