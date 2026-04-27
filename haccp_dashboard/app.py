@@ -169,27 +169,24 @@ sidebar = html.Div(
         ),
         # 메뉴 섹션
         html.Div("품질관리", className="sidebar-section-label"),
-        dbc.NavLink(
+        dcc.Link(
             "QC/QA 대시보드",
             href="/",
             className="sidebar-link",
         ),
-        dbc.NavLink(
+        dcc.Link(
             "가열 살균 공정",
             href="/heating",
-            active="exact",
             className="sidebar-link",
         ),
-        dbc.NavLink(
+        dcc.Link(
             "최종 품질 검사",
             href="/final-inspection",
-            active="exact",
             className="sidebar-link",
         ),
-        dbc.NavLink(
+        dcc.Link(
             "알람 이력 관리",
             href="/alarm-history",
-            active="exact",
             className="sidebar-link",
         ),
         # 하단 버전 정보
