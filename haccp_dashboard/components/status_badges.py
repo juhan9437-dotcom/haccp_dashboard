@@ -63,37 +63,48 @@ def status_dot(status: str) -> html.Span:
     )
 
 
-# ── KPI 카드 ───────────────────────────────────────────────────────────────────
+# ── KPI 카드 (전 페이지 공통 컴포넌트) ────────────────────────────────────────
+#
+# 디자인 규칙(고정):
+#   - 카드: ds-kpi-card 단일 클래스만 사용 (--sm, borderLeftColor 등 변형 금지)
+#   - 내부: 상단 제목(ds-kpi-label) / 중단 수치(ds-kpi-value) / 하단 설명(ds-kpi-sub)
+#   - 좌측 정렬, 동일한 폰트/여백/높이
+#   - 아이콘·배지·배경색·컬러 강조 없음
+# 다른 페이지에서도 제목/숫자/설명만 바뀌고 디자인은 100% 동일해야 한다.
+# ----------------------------------------------------------------------------
 
 def kpi_card(
     title: str,
     value: str,
     description: str = "",
-    accent: str = "#1565c0",
-    status: str | None = None,
+    accent: str | None = None,   # (호환용) 무시됨 - 색 강조 금지
+    status: str | None = None,   # (호환용) 무시됨
+    **_legacy,                   # is_main, icon, sub 등 구버전 인자 흡수
 ) -> html.Div:
-    """상태 KPI 카드를 반환합니다."""
-    if status == "위험":
-        accent = "#b91c1c"
-    elif status == "경고":
-        accent = "#b45309"
-    elif status == "정상":
-        accent = "#15803d"
+    """전 페이지 공통 KPI 카드.
 
-    return html.Div(
-        [
-            html.Div(title, className="ds-kpi-label"),
-            html.Div(value, className="ds-kpi-value", style={"color": accent}),
-            html.Div(description, className="ds-kpi-sub") if description else None,
-        ],
-        className="ds-kpi-card",
-        style={"borderLeftColor": accent},
-    )
+    Args:
+        title: 카드 제목 (예: "일일 총 생산량")
+        value: 핵심 수치 + 단위 (예: "10,230 L", "0", "24")
+        description: 1~2줄 짧은 설명 (선택)
+    """
+    children = [
+        html.Div(title, className="ds-kpi-label"),
+        html.Div(value, className="ds-kpi-value"),
+    ]
+    if description:
+        children.append(html.Div(description, className="ds-kpi-sub"))
+    return html.Div(children, className="ds-kpi-card")
 
 
 def kpi_row(cards: list) -> html.Div:
-    """KPI 카드들을 가로로 배치합니다."""
+    """KPI 카드들을 동일 간격·동일 높이로 가로 배치한다."""
     return html.Div(cards, className="ds-kpi-grid")
+
+
+# 별칭 — 페이지에서 의미가 명확하도록
+create_kpi_card = kpi_card
+create_kpi_grid = kpi_row
 
 
 # ── 섹션 헤더 ──────────────────────────────────────────────────────────────────

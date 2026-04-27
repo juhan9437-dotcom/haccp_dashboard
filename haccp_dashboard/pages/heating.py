@@ -7,7 +7,11 @@ import dash
 from dash import Input, Output, State, callback, dcc, html, no_update
 
 from haccp_dashboard.utils.status_logic import STATUS_COLOR as _STATUS_COLORS, STATUS_BG as _STATUS_BG, STATUS_TEXT as _STATUS_TEXT
-from haccp_dashboard.components.status_badges import CARD_STYLE as _CARD_STYLE
+from haccp_dashboard.components.status_badges import (
+    CARD_STYLE as _CARD_STYLE,
+    kpi_card as _kpi_card,
+    kpi_row as _kpi_row,
+)
 
 dash.register_page(__name__, path="/heating")
 
@@ -15,11 +19,8 @@ _DEFAULT_PERIOD = "week"
 
 
 def _small_kpi(label, value, sub="", accent="#1565c0"):
-    return html.Div([
-        html.Div(label, className="ds-kpi-label"),
-        html.Div(value, className="ds-kpi-value", style={"color": accent}),
-        html.Div(sub, className="ds-kpi-sub") if sub else None,
-    ], className="ds-kpi-card ds-kpi-card--sm", style={"borderLeftColor": accent})
+    """전 페이지 공통 KPI 카드 (components.status_badges.kpi_card 사용)."""
+    return _kpi_card(label, value, sub)
 
 
 def _build_realtime_kpi_section(line_id: int = 1):
@@ -104,13 +105,7 @@ def _build_realtime_kpi_section(line_id: int = 1):
                    "전체 공정의 흔들림 없는 안정 운영 수준", stab_color),
     ]
 
-    return html.Div([
-        html.Div([
-            html.H2("가열살균 공정 KPI", className="ds-section-header"),
-            html.Div("금일 공정 현황 집계", className="ds-section-sub"),
-        ], style={"marginBottom": "12px"}),
-        html.Div(kpis, className="ds-kpi-grid"),
-    ], style=_CARD_STYLE)
+    return _kpi_row(kpis)
 
 
 def _similarity_polygon_figure(similarity_scores: dict, stage: str = "Hold"):
@@ -890,9 +885,7 @@ def layout(**_kwargs):
         html.H1("가열살균 공정 관리", className="ds-page-title"),
 
         # 실시간 KPI (전체 라인 집계)
-        html.Div([
-            html.Div(id="heating-realtime-kpi", children=_build_realtime_kpi_section()),
-        ], style=_CARD_STYLE),
+        html.Div(id="heating-realtime-kpi", children=_build_realtime_kpi_section()),
 
         # 3-컬럼 분석
         html.Div([

@@ -2,6 +2,11 @@ import dash
 from dash import ALL, Input, Output, State, callback, ctx, dcc, html, no_update
 from functools import lru_cache
 
+from haccp_dashboard.components.status_badges import (
+    kpi_card as _kpi_card,
+    kpi_row as _kpi_row,
+)
+
 
 dash.register_page(__name__, path="/alarm-history")
 
@@ -487,12 +492,9 @@ def layout():
     total = max(counts["total"], 1)
     resolution_rate = f"{resolved / total * 100:.0f}%"
 
-    # KPI 카드 함수
-    def _kpi(title, value, accent="#374151"):
-        return html.Div([
-            html.Div(title, className="ds-kpi-label"),
-            html.Div(value, className="ds-kpi-value", style={"color": accent}),
-        ], className="ds-kpi-card ds-kpi-card--sm", style={"borderLeftColor": accent})
+    # KPI 카드 함수 (전 페이지 공통 컴포넌트 사용)
+    def _kpi(title, value, accent="#374151", description=""):
+        return _kpi_card(title, value, description)
 
     return html.Div(
         [
@@ -509,14 +511,13 @@ def layout():
                     html.Div(
                         [
                             html.H2("알람 이력 관리", className="section-title page"),
-                            html.Div(
+                            _kpi_row(
                                 [
-                                    _kpi("총 알람", f"{counts['total']}", "#374151"),
-                                    _kpi("위험", f"{counts['danger']}", "#ef4444" if counts["danger"] > 0 else "#22c55e"),
-                                    _kpi("경고", f"{counts['warning']}", "#f59e0b" if counts["warning"] > 0 else "#22c55e"),
-                                    _kpi("미처리", f"{counts['unresolved']}", "#ef4444" if counts["unresolved"] > 0 else "#22c55e"),
-                                ],
-                                style={"display": "flex", "gap": "10px", "flexWrap": "wrap", "marginTop": "12px"},
+                                    _kpi("총 알람", f"{counts['total']}", description="누적 알람 총 건수"),
+                                    _kpi("위험", f"{counts['danger']}", description="즉시 조치 필요 위험 알람"),
+                                    _kpi("경고", f"{counts['warning']}", description="모니터링 강화 필요 경고"),
+                                    _kpi("미처리", f"{counts['unresolved']}", description="확인·조치 미완료 알람"),
+                                ]
                             ),
                         ],
                         className="screen-zone top",

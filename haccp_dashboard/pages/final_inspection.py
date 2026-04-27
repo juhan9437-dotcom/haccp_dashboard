@@ -8,6 +8,10 @@ import json
 
 import dash
 from dash import ALL, Input, Output, State, callback, dcc, html
+from haccp_dashboard.components.status_badges import (
+    kpi_card as _kpi_card,
+    kpi_row as _kpi_row,
+)
 from haccp_dashboard.models import (
     get_image_inference_status,
     get_inference_status,
@@ -46,22 +50,9 @@ PREDICTION_META = {
 
 
 def _product_card(title, value, unit, caption, color="#1f2937", is_main=False):
-    """최종검사 제품 카드"""
-    return html.Div(
-        [
-            html.Div(title, className="kpi-label"),
-            html.Div(
-                [
-                    html.Span(value, style={"fontSize": "32px", "fontWeight": "800", "color": color}),
-                    html.Span(unit, style={"fontSize": "13px", "color": "#9ca3af", "marginLeft": "5px"}),
-                ],
-                style={"marginBottom": "4px"},
-            ),
-            html.Div(caption, className="kpi-description"),
-        ],
-        className="compact-kpi-card",
-        style={"borderLeftColor": color} if is_main else {},
-    )
+    """최종검사 제품 카드 (전 페이지 공통 KPI 컴포넌트 사용)."""
+    display_value = f"{value} {unit}".strip() if unit else str(value)
+    return _kpi_card(title, display_value, caption)
 
 
 def _metric_stat_card(title, value, caption):
@@ -1341,7 +1332,7 @@ def layout():
                             html.Div(
                                 id="final-inspection-cards",
                                 children=_build_metric_cards({}),
-                                className="compact-kpi-grid five",
+                                className="ds-kpi-grid",
                             ),
                             html.Div(
                                 demo.get_final_inspection_dataset_validation_message(),

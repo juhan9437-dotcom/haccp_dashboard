@@ -189,26 +189,36 @@ def build_main_report() -> html.Div:
         line_states = {}
 
     try:
-        from haccp_dashboard.lib.dashboard_demo import (
-            get_final_inspection_metrics,
-            get_batch_summary_frame,
-        )
-        metrics = get_final_inspection_metrics("today")
+        from haccp_dashboard.lib.dashboard_demo import get_batch_summary_frame
         batch_frame = get_batch_summary_frame()
     except Exception:
-        metrics = {}
         batch_frame = None
 
-    # KPI 계산
-    total_q = int(float(metrics.get("total_q_in", 0) or 0))
-    ccp_dev = 0
-    shipment_risk = 0
-    unresolved_high = 0
-    line_rows = []
+    # 페이지 KPI 카드와 동일한 데이터/계산 사용 (build_kpi_items)
+    try:
+        from haccp_dashboard.lib.main_helpers import (
+            build_kpi_items,
+            get_today_data,
+            load_process_batch_dataframe,
+            resolve_process_csv_path,
+        )
+        _frame = load_process_batch_dataframe(resolve_process_csv_path())
+        _today = get_today_data(_frame)
+        kpi_items = build_kpi_items(_today)
+    except Exception:
+        kpi_items = [
+            {"title": "일일 총 생산량", "value": "-", "description": "당일 우유 생산량 집계"},
+            {"title": "CCP 이탈 건수", "value": "-", "description": "CCP 기준 벗어난 공정 수"},
+            {"title": "출하영향 공정 수", "value": "-", "description": "출하 보류·추가 판정 공정 수"},
+            {"title": "미조치 고위험 알람 수", "value": "-", "description": "즉시 조치 필요 알람"},
+        ]
 
+    line_rows = []
     if batch_frame is not None and not batch_frame.empty:
-        ccp_dev = int(batch_frame["hold_temp_ok"].eq(False).sum() + batch_frame["hold_time_ok"].eq(False).sum())
         shipment_risk = int(batch_frame["risk_level"].isin(["위험", "경고"]).sum())
+    else:
+        shipment_risk = 0
+    ccp_dev = 0  # (보고서 본문 메모용)
 
     for line_id, s in sorted((line_states or {}).items()):
         risk = s.get("sensor_status") or s.get("risk_level") or "정상"
@@ -260,10 +270,8 @@ def build_main_report() -> html.Div:
             header_div,
             meta_table,
             _section("1. 핵심 KPI 요약", html.Div([
-                _kpi_card("일일 총 생산량", str(total_q), "단위: 장"),
-                _kpi_card("CCP 이탈 건수", str(ccp_dev), "단위: 건"),
-                _kpi_card("출하 영향 배치 수", str(shipment_risk), "단위: 건"),
-                _kpi_card("미조치 고위험 알람 수", str(unresolved_high), "단위: 건"),
+                _kpi_card(it["title"], str(it["value"]), it.get("description", ""))
+                for it in kpi_items
             ], style=_KPI_GRID)),
             _section("2. 라인별 즉시조치 Batch 현황", html.Table(
                 [
@@ -316,17 +324,73 @@ def build_heating_report() -> html.Div:
     except Exception:
         batch_frame = None
 
-    # CCP 통계
-    ccp_dev_count = 0
+    # ── 페이지 KPI와 동일한 계산 (haccp_dashboard/pages/heating.py::_build_realtime_kpi_section)
+    try:
+        from haccp_dashboard.lib.main_helpers import (
+            get_today_data,
+            load_process_batch_dataframe,
+            resolve_process_csv_path,
+        )
+        _today = get_today_data(load_process_batch_dataframe(resolve_process_csv_path()))
+    except Exception:
+        _today = None
+
+    # 1) 현재 가동 중 배치 수
+    try:
+        active_batches = sum(
+            1 for s in (line_states or {}).values()
+            if s.get("state") not in (None, "Release", "Inspect", "")
+        )
+        if active_batches == 0:
+            active_batches = len(line_states or {})
+    except Exception:
+        active_batches = 0
+
+    # 2) 금일 검사 건수
+    try:
+        if _today is not None and not _today.empty and "batch_id" in _today.columns:
+            inspection_count = int(_today["batch_id"].nunique())
+        else:
+            inspection_count = 0
+    except Exception:
+        inspection_count = 0
+
+    # 3) CCP 이탈 공정 수 (살균온도/유지시간)
+    try:
+        if _today is not None and not _today.empty:
+            t_mask = _today["ccp_hold_time_ok"].eq(0) if "ccp_hold_time_ok" in _today.columns else _today.index.to_series().eq(False)
+            p_mask = _today["ccp_hold_temp_ok"].eq(0) if "ccp_hold_temp_ok" in _today.columns else _today.index.to_series().eq(False)
+            dev_mask = t_mask | p_mask
+            if "batch_id" in _today.columns:
+                ccp_dev_count = int(_today.loc[dev_mask, "batch_id"].nunique())
+            else:
+                ccp_dev_count = int(dev_mask.sum())
+        else:
+            ccp_dev_count = 0
+    except Exception:
+        ccp_dev_count = 0
+
+    # 4) 공정안정도 지수
+    try:
+        from haccp_dashboard.lib.dashboard_demo import _filter_summary
+        _today_summary = _filter_summary("today")
+        if _today_summary.empty and batch_frame is not None:
+            _today_summary = batch_frame.head(6)
+        if _today_summary is not None and not _today_summary.empty:
+            stability_avg = float(_today_summary["stability_score"].mean())
+        else:
+            stability_avg = 100.0
+    except Exception:
+        stability_avg = 100.0
+
+    # CCP 보조 통계 (본문 표/메모용)
     temp_ok_label = "적합"
     hold_ok_label = "적합"
     overall_ccp_risk = "정상"
-
     if batch_frame is not None and not batch_frame.empty:
         recent = batch_frame.head(6)
         temp_fails = int(recent["hold_temp_ok"].eq(False).sum())
         hold_fails = int(recent["hold_time_ok"].eq(False).sum())
-        ccp_dev_count = temp_fails + hold_fails
         temp_ok_label = "이탈" if temp_fails > 0 else "적합"
         hold_ok_label = "이탈" if hold_fails > 0 else "적합"
         if ccp_dev_count > 0:
@@ -382,10 +446,10 @@ def build_heating_report() -> html.Div:
             header_div,
             meta_table,
             _section("1. 핵심 CCP 판정 요약", html.Div([
-                _kpi_card("살균온도 판정", temp_ok_label, "기준: 72°C 이상"),
-                _kpi_card("유지시간 판정", hold_ok_label, "기준: 15분 이상"),
-                _kpi_card("CCP 이탈 Batch 수", str(ccp_dev_count), "단위: 건"),
-                _kpi_card("현재 위험 상태", overall_ccp_risk, "상태: 정상/경고/위험"),
+                _kpi_card("현재 가동 중 배치 수", f"{active_batches}개", "현재 생산·처리 중인 배치 수"),
+                _kpi_card("금일 검사 건수", f"{inspection_count:,}건", "오늘 점검 완료된 배치 수"),
+                _kpi_card("CCP 이탈 공정 수", f"{ccp_dev_count}공정", "살균온도·유지시간 기준 이탈 공정"),
+                _kpi_card("공정안정도 지수", f"{stability_avg:.1f}%", "전체 공정의 흔들림 없는 안정 운영 수준"),
             ], style=_KPI_GRID)),
             _section("2. 실시간 공정 모니터링", html.Table(
                 [
@@ -449,6 +513,10 @@ def build_final_inspection_report() -> html.Div:
         current_lot = None
 
     total_q = int(float(metrics.get("total_q_in", 0) or 0))
+    pure_milk = int(float(metrics.get("pure_milk", 0) or 0))
+    milk_water = int(float(metrics.get("milk_water", 0) or 0))
+    milk_water_glucose = int(float(metrics.get("milk_water_glucose", 0) or 0))
+    shipment_volume = int(float(metrics.get("shipment_volume", 0) or 0))
     pass_count = 0
     fail_count = 0
     pending_count = 0
@@ -515,11 +583,12 @@ def build_final_inspection_report() -> html.Div:
             header_div,
             meta_table,
             _section("1. 검사 KPI 요약", html.Div([
-                _kpi_card("총 검사건수", str(total_q), "단위: 건"),
-                _kpi_card("합격 Batch 수", str(pass_count), "단위: 건"),
-                _kpi_card("부적합 Batch 수", str(fail_count), "단위: 건"),
-                _kpi_card("검사대기 Batch 수", str(pending_count), "단위: 건"),
-            ], style=_KPI_GRID)),
+                _kpi_card("총검사량", f"{total_q:,} 장", "검사 대상 이미지 프레임 총수"),
+                _kpi_card("순수우유", f"{pure_milk:,} 장", "혼입 없이 정상으로 분류된 프레임"),
+                _kpi_card("우유 + 물", f"{milk_water:,} 장", "우유와 물 혼합으로 분류된 프레임"),
+                _kpi_card("우유 + 물 + 포도당", f"{milk_water_glucose:,} 장", "우유·물·포도당 혼합으로 분류된 프레임"),
+                _kpi_card("최종제품출하량", f"{shipment_volume:,} 장", "정상 판정으로 출하 가능 처리된 프레임"),
+            ], style={**_KPI_GRID, "gridTemplateColumns": "repeat(5, 1fr)"})),
             _section("2. 라인별 검사 현황", html.Table(
                 [
                     html.Tr([html.Th(c, style=_TH) for c in ["라인", "대상 Batch", "검사시각", "검사방식", "AI 판독결과", "최종 판정", "출하 여부"]]),
@@ -572,11 +641,21 @@ def build_alarm_history_report() -> html.Div:
         batch_frame = None
         final_frame = None
 
-    # KPI
-    total_alarms = 0
-    high_unresolved = 0
-    resolved = 0
-    avg_time_min = "–"
+    # ── 페이지 KPI와 동일한 카운트 (haccp_dashboard/pages/alarm_history.py::_alert_counts)
+    try:
+        from haccp_dashboard.pages.alarm_history import _all_alert_rows, _alert_counts
+        all_rows = _all_alert_rows()
+        counts = _alert_counts(all_rows)
+        total_alarms = int(counts.get("total", 0))
+        danger_count = int(counts.get("danger", 0))
+        warning_count = int(counts.get("warning", 0))
+        unresolved_count = int(counts.get("unresolved", 0))
+    except Exception:
+        total_alarms = danger_count = warning_count = unresolved_count = 0
+
+    # 본문 표/메모용 보조 통계
+    high_unresolved = danger_count
+    resolved = max(0, total_alarms - unresolved_count)
 
     active_alarm_rows = []
     history_rows = []
@@ -585,9 +664,6 @@ def build_alarm_history_report() -> html.Div:
         danger_batches = batch_frame[batch_frame["risk_level"] == "위험"].head(4)
         warn_batches = batch_frame[batch_frame["risk_level"] == "경고"].head(4)
         all_alarms = list(danger_batches.itertuples()) + list(warn_batches.itertuples())
-        total_alarms = len(all_alarms)
-        high_unresolved = len(danger_batches)
-        resolved = total_alarms - high_unresolved
 
         import datetime as dt
         base_time = dt.datetime.combine(dt.date.today(), dt.time(4, 0))
@@ -607,7 +683,6 @@ def build_alarm_history_report() -> html.Div:
             ]))
         for idx, row in enumerate(all_alarms[:4]):
             level = str(row.risk_level) if hasattr(row, "risk_level") else "경고"
-            b_name = str(row.batch_name) if hasattr(row, "batch_name") else "–"
             recur = "재발 없음" if idx % 2 == 0 else "재발 있음"
             capa = "진행중" if level == "위험" else "완료"
             history_rows.append(html.Tr([
@@ -635,10 +710,10 @@ def build_alarm_history_report() -> html.Div:
             header_div,
             meta_table,
             _section("1. 알람 KPI 요약", html.Div([
-                _kpi_card("전체 알람 건수", str(total_alarms), "단위: 건"),
-                _kpi_card("미조치 고위험", str(high_unresolved), "단위: 건"),
-                _kpi_card("조치 완료 건수", str(resolved), "단위: 건"),
-                _kpi_card("평균 조치시간", avg_time_min, "단위: 분"),
+                _kpi_card("총 알람", str(total_alarms), "누적 알람 총 건수"),
+                _kpi_card("위험", str(danger_count), "즉시 조치 필요 위험 알람"),
+                _kpi_card("경고", str(warning_count), "모니터링 강화 필요 경고"),
+                _kpi_card("미처리", str(unresolved_count), "확인·조치 미완료 알람"),
             ], style=_KPI_GRID)),
             _section("2. 현재 활성 알람 현황", html.Table(
                 [

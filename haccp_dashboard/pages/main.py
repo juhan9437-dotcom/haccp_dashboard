@@ -17,7 +17,11 @@ from haccp_dashboard.utils.status_logic import (
     STATUS_BORDER as _STATUS_BORDER,
     STATUS_TEXT as _STATUS_TEXT,
 )
-from haccp_dashboard.components.status_badges import kpi_card as _kpi_card, CARD_STYLE as _CARD_STYLE
+from haccp_dashboard.components.status_badges import (
+    kpi_card as _kpi_card,
+    kpi_row as _kpi_row,
+    CARD_STYLE as _CARD_STYLE,
+)
 
 dash.register_page(__name__, path="/")
 
@@ -35,15 +39,8 @@ _ICON_MAP = {
 
 def _main_kpi(label: str, value: str, sub: str = "", accent: str = "#1565c0",
               icon: str = "") -> html.Div:
-    """KPI 카드 (아이콘/컬러 강조 제거 버전)."""
-    return html.Div(
-        [
-            html.Div(label, className="ds-kpi-label"),
-            html.Div(value, className="ds-kpi-value"),
-            html.Div(sub, className="ds-kpi-sub") if sub else None,
-        ],
-        className="ds-kpi-card",
-    )
+    """전 페이지 공통 KPI 카드 (components.status_badges.kpi_card 사용)."""
+    return _kpi_card(label, value, sub)
 
 
 def _get_rate_panel_data() -> dict:
@@ -120,19 +117,18 @@ def _build_kpi_section(_kpis=None):
         today_data = get_today_data(frame)
         items = build_kpi_items(today_data)
         cards = [
-            _main_kpi(it["title"], it["value"], it.get("description", ""),
-                      it.get("accent", "#3b82f6"))
+            _main_kpi(it["title"], it["value"], it.get("description", ""))
             for it in items
         ]
     except Exception:
         cards = [
-            _main_kpi("일일 총 생산량", "-", "당일 우유 생산량 집계", "#3b82f6"),
-            _main_kpi("CCP 이탈 건수", "-", "CCP 기준 벳어난 공정 수", "#ef4444"),
-            _main_kpi("출하영향 공정 수", "-", "출하 보류·추가 판정 공정 수", "#f97316"),
-            _main_kpi("미조치 고위험 알람 수", "-", "즉시 조치 필요 알람", "#dc2626"),
+            _main_kpi("일일 총 생산량", "-", "당일 우유 생산량 집계"),
+            _main_kpi("CCP 이탈 건수", "-", "CCP 기준 벗어난 공정 수"),
+            _main_kpi("출하영향 공정 수", "-", "출하 보류·추가 판정 공정 수"),
+            _main_kpi("미조치 고위험 알람 수", "-", "즉시 조치 필요 알람"),
         ]
 
-    return html.Div(cards, className="ds-kpi-grid")
+    return _kpi_row(cards)
 
 
 def _build_line_card(line_state):
