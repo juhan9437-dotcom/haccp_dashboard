@@ -22,7 +22,7 @@ from haccp_dashboard.components.status_badges import (
     kpi_row as _kpi_row,
     CARD_STYLE as _CARD_STYLE,
 )
-
+pd.read_csv(), load_model(),
 dash.register_page(__name__, path="/")
 
 _CCP_THRESHOLD_PCT = 3.0  # 허용 기준 (%)
