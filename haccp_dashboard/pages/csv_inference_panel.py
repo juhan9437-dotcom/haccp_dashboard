@@ -11,7 +11,7 @@ from typing import Any
 
 _TARGET = "lib.csv_inference_panel"
 
-
+pd.read_csv(), load_model(),
 def _load():
     return importlib.import_module(_TARGET)
 
